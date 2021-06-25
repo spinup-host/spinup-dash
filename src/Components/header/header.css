@@ -1,0 +1,22 @@
+.headRect{
+    /* width: 1440px;
+    height: 60px; */
+    margin: 0 0 52px;
+    padding: 14px 170px;
+    background-color: #121826;
+}
+
+.icon{
+    width: 30px;
+    height: 30px;
+    margin: 2px 896px 0 0;
+}
+
+.clusterMaker{
+    width: 120px;
+    height: 29px;
+    flex-grow: 0;
+    margin: 1px 22px 2px 896px;
+    padding: 2px 13px 2px 14px;
+    background-color: #42e8e0;
+}

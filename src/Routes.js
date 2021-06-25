@@ -1,7 +1,7 @@
 import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import Login from './components/login/login';
-// import { Dashboard } from '';
+import Dashboard from "./components/dashboard/dashboard";
  import { HelloWorld } from "./components/HelloWorld";
 
 const ProtectedRoute = ({ component: Component, ...rest }) => (
