@@ -1,0 +1,87 @@
+.Background {
+  padding: 200px 500px;
+  overflow-x: hidden;
+}
+
+.Rectangle {
+  width: 400px;
+  height: 320px;
+  flex-grow: 0;
+  padding: 36px 41px 48px 47px;
+  border-radius: 10px;
+  background-color: #121826;
+  text-align: center;
+}
+
+.LogoStyle {
+  width: 85px;
+  height: 30px;
+  flex-grow: 0;
+  display: block;
+  margin-top: 36px;
+  margin-left: auto;
+  margin-right: auto;
+  object-fit: contain;
+}
+.Title {
+  height: 40px;
+  flex-grow: 0;
+  /* margin: 27px 65px 89px 80px; */
+  margin-top: 27px;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: SFProText;
+  font-size: 1.3em;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.11;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+}
+.subTitle {
+  width: 270px;
+  height: 40px;
+  flex-grow: 0;
+  margin-top: 1vh;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: SFProText;
+  font-size: 0.9em;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.33;
+  letter-spacing: normal;
+  text-align: center;
+  color: #dcdce5;
+}
+
+.Button-primary {
+  width: 312px;
+  height: 50px;
+  flex-grow: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 8vh;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px 20px;
+  background-color: #42e8e0;
+  cursor: pointer;
+  border: 0px;
+}
+
+.text-style {
+  font-family: SFProText;
+  font-size: 1.2em;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.25;
+  color: #06071d;
+}
