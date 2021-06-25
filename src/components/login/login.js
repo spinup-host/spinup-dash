@@ -1,10 +1,11 @@
 import React from "react";
 import "./login.css";
 import Logo from "../../assets/images/Logo.png";
-import { loginOauth } from "../../api/loginCalls";
 
 const Login = () => {
-
+  const handleClick = () => {
+    window.location.href = process.env.REACT_APP_URL;
+  };
   return (
     <div className="Background">
       <div className="Rectangle">
@@ -13,10 +14,14 @@ const Login = () => {
         </div>
         <div className="Title">Welcome to SpinUp</div>
         <div className="subTitle">Connect with GitHub to get started</div>
-        <button className="Button-primary" onClick={loginOauth}>
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/2048px-Octicons-mark-github.svg.png" width="22px" alt="GitHub Logo"/>
+        <button onClick={handleClick} className="Button-primary">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/2048px-Octicons-mark-github.svg.png"
+            width="22px"
+            alt="GitHub Logo"
+          />
           <div className="text-style">Get started with GitHub</div>
-        </button>           
+        </button>
       </div>
     </div>
   );

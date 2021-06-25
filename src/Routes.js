@@ -1,8 +1,8 @@
 import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
-import Login from './components/login/login';
+import Login from "./components/login/login";
 // import { Dashboard } from '';
- import { HelloWorld } from "./components/HelloWorld";
+import { HelloWorld } from "./Components/HelloWorld";
 
 const ProtectedRoute = ({ component: Component, ...rest }) => (
   <Route
