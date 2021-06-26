@@ -11,6 +11,7 @@ const Header = () =>{
                 <img src={Logo} alt="logo"></img>
                 </div>
                 <div>
+                {/* needs work for crealte a cluster button */}
                 <button className="clusterMaker">
                     Create Cluster
                 </button>

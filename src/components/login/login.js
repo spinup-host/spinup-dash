@@ -1,11 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./login.css";
 import Logo from "../../assets/images/Logo.png";
+import { useDispatch,useSelector } from "react-redux";
+import { loggingIn } from "../../actions/logIn";
+import { useHistory } from "react-router-dom";
 
 const Login = () => {
+
+  let history = useHistory();
+  const dispatch = useDispatch();
+
   const handleClick = () => {
     window.location.href = process.env.REACT_APP_URL;
   };
+
+  useEffect(() => {
+    var code =
+      window.location.href.match(/\?code=(.*)/) &&
+      window.location.href.match(/\?code=(.*)/)[1];
+  }, []);
+
   return (
     <div className="Background">
       <div className="Rectangle">
