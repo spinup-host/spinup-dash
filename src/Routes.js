@@ -15,6 +15,7 @@ const ProtectedRoute = ({ component: Component, ...rest }) => (
     }}
   />
 );
+
 const Routes = () => {
   return (
     <Switch>
