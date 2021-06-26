@@ -1,8 +1,7 @@
 import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
-import Login from './components/login/login';
+import Login from "./components/login/login";
 import Dashboard from "./components/dashboard/dashboard";
- import { HelloWorld } from "./components/HelloWorld";
 
 const ProtectedRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -19,9 +18,9 @@ const ProtectedRoute = ({ component: Component, ...rest }) => (
 const Routes = () => {
   return (
     <Switch>
-      <Route path="/" exact component={HelloWorld} />
+      <Route path="/" exact component={Login} />
       <Route path="/login" exact component={Login} />
-      {/* <ProtectedRoute path="/dashboard" component={Dashboard}/> */}
+      <Route path="/dashboard" component={Dashboard} />
     </Switch>
   );
 };
