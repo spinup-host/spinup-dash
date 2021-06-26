@@ -27,7 +27,7 @@ const Navbar = () => {
                 backgroundColor: "#121826",
               }}
             >
-              <Menu.Item>
+              <Menu.Item style={{ backgroundColor: "#09132b" }}>
                 <Button
                   type="text"
                   style={{
