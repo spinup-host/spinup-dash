@@ -1,11 +1,13 @@
 import React from "react";
-import Header from "../header/header";
+import Navbar from "../navbar/navbar";
+import ClusterInfo from "../clusterinfo/clusterinfo";
 
 const Dashboard = () => {
   return (
-    <div>
-      <Header />
-    </div>
+    <>
+      <Navbar />
+      <ClusterInfo />
+    </>
   );
 };
 
