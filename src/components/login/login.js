@@ -4,6 +4,7 @@ import Logo from "../../assets/images/Logo.png";
 import { useDispatch,useSelector } from "react-redux";
 import { loggingIn } from "../../actions/logIn";
 import { useHistory } from "react-router-dom";
+import { loginOauth } from "../../api/loginCalls";
 
 const Login = () => {
 
@@ -15,9 +16,15 @@ const Login = () => {
   };
 
   useEffect(() => {
-    var code =
-      window.location.href.match(/\?code=(.*)/) &&
-      window.location.href.match(/\?code=(.*)/)[1];
+    var code = window.location.href.match(/\?code=(.*)/) && window.location.href.match(/\?code=(.*)/)[1];    
+    //generate token
+    async function getToken(code){
+      var res= await loginOauth(code);
+      console.log(res);
+    }
+
+    getToken(code);
+
   }, []);
 
   return (

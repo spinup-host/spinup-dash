@@ -1,11 +1,16 @@
-// import axios from "axios";
+import axios from "axios";
 
-const loginUrl = "https://github.com/login/oauth/authorize";
-const client_id = "77a7c0a7c7657aa00e3b";
+const loginUrlToken = "needs api here";
+const client_id=process.env.REACT_APP_CLIENT_ID
+const client_secret=process.env.REACT_APP_CLIENT_SECRET
 
-export const loginOauth = async () => {
-  if (client_id === "none") {
-    console.log("no client github id");
-    return;
+export const loginOauth = async (code) => {
+  var tempUrl=loginUrlToken+code;    
+  if(code){
+      // include some server side code api connection      
+      //send code to backend and receive token and send to redux 
+  }    
+  else{
+    console.log("No github code");
   }
 };
