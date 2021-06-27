@@ -1,3 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+* {
+  font-family: "Roboto", sans-serif;
+}
+
 .Background {
   padding: 200px 500px;
   overflow-x: hidden;
@@ -32,7 +38,7 @@
   margin-top: 27px;
   margin-left: auto;
   margin-right: auto;
-  font-family: SFProText;
+  /* font-family: SFProText; */
   font-size: 1.3em;
   font-weight: normal;
   font-stretch: normal;
@@ -49,7 +55,7 @@
   margin-top: 1vh;
   margin-left: auto;
   margin-right: auto;
-  font-family: SFProText;
+  /* font-family: SFProText; */
   font-size: 0.9em;
   font-weight: normal;
   font-stretch: normal;
@@ -79,7 +85,7 @@
 }
 
 .text-style {
-  font-family: SFProText;
+  /* font-family: SFProText; */
   font-size: 1.2em;
   font-weight: bold;
   font-stretch: normal;

@@ -1,0 +1,22 @@
+.cluster-name:focus {
+  border-bottom: 1px solid #5cfff3;
+  transition: all 1s;
+}
+.ant-modal-header {
+  background-color: #212936;
+  border: none;
+}
+.ant-modal-title {
+  color: white;
+}
+.ant-modal-footer {
+  background-color: #212936;
+  border: none;
+}
+.ant-modal-close {
+  color: #cecece;
+  opacity: 0.2;
+}
+.ant-divider {
+  color: #2c2f34;
+}

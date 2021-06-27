@@ -1,13 +1,12 @@
 import React, { useEffect } from "react";
 import "./login.css";
 import Logo from "../../assets/images/Logo.png";
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { loggingIn } from "../../actions/logIn";
 import { useHistory } from "react-router-dom";
 import { loginOauth } from "../../api/loginCalls";
 
 const Login = () => {
-
   let history = useHistory();
   const dispatch = useDispatch();
 
@@ -16,14 +15,16 @@ const Login = () => {
   };
 
   useEffect(() => {
-    var code = window.location.href.match(/\?code=(.*)/) && window.location.href.match(/\?code=(.*)/)[1];    
+    var code =
+      window.location.href.match(/\?code=(.*)/) &&
+      window.location.href.match(/\?code=(.*)/)[1];
     //generate user data from oauth and dispatch to redux
-    async function getUserData(code){
-      var res= await loginOauth(code);            
-      if(res.data!="No GitHub Code"){
+    async function getUserData(code) {
+      var res = await loginOauth(code);
+      if (res.data !== "No GitHub Code") {
         dispatch(loggingIn(res.data));
         history.push("/dashboard");
-      }     
+      }
     }
     getUserData(code);
   }, []);
