@@ -17,14 +17,15 @@ const Login = () => {
 
   useEffect(() => {
     var code = window.location.href.match(/\?code=(.*)/) && window.location.href.match(/\?code=(.*)/)[1];    
-    //generate token
-    async function getToken(code){
-      var res= await loginOauth(code);
-      console.log(res);
+    //generate user data from oauth and dispatch to redux
+    async function getUserData(code){
+      var res= await loginOauth(code);            
+      if(res.data!="No GitHub Code"){
+        dispatch(loggingIn(res.data));
+        history.push("/dashboard");
+      }     
     }
-
-    getToken(code);
-
+    getUserData(code);
   }, []);
 
   return (

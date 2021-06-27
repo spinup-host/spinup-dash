@@ -1,16 +1,23 @@
 import axios from "axios";
 
-const loginUrlToken = "needs api here";
-const client_id=process.env.REACT_APP_CLIENT_ID
-const client_secret=process.env.REACT_APP_CLIENT_SECRET
+const loginUrlToken = "http://localhost:3001/githubAuth";
+const config = {
+  headers: {
+    "Content-type": "application/json",
+  },
+};
 
-export const loginOauth = async (code) => {
-  var tempUrl=loginUrlToken+code;    
+export const loginOauth = async (code) => {    
   if(code){
-      // include some server side code api connection      
-      //send code to backend and receive token and send to redux 
+      var FormWithCode = new FormData();
+      FormWithCode.append('code',code);
+      var res=await axios.post(loginUrlToken,FormWithCode,config);      
+      return res;
   }    
   else{
-    console.log("No github code");
+    var res={
+      data:"No GitHub Code"
+    }    
+    return res;
   }
 };
