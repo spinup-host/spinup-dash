@@ -1,70 +1,64 @@
-# Getting Started with Create React App
+# Welcome to spinup-host-product 👋
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Version](https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000)
 
-## Available Scripts
+> Product Side of spinup.host, an alternative to RDS
 
-In the project directory, you can run:
+## Prerequisites
 
-### `npm start`
+- You will need a GitHub Token, which you can get from,
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```sh
+https://github.com/settings/developers
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Set the redirect URL to http://localhost:3000/login
 
-### `npm test`
+- Setup the tokens in the frontend first, create a .env file in the root of your frontend folder
+- In the .env file, add the following environment variable
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```sh
+REACT_APP_URL = https://github.com/login/oauth/authorize?client_id=<YOUR_CLIENT_ID>&redirect_uri=http://localhost:3000/login
+```
 
-### `npm run build`
+- You also need to setup environment variables in the backend folder
+- Go into the OauthBackend folder,
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```sh
+cd OauthBackend
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Create the .env file, and set up the following environment variables
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```sh
+CLIENT_ID = <YOUR_CLIENT_ID>
+CLIENT_SECRET = <YOUR_CLIENT_SECRET>
+```
 
-### `npm run eject`
+## Install
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- First install all dependencies
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```sh
+cd spinup-dash && npm install
+cd OauthBackend && npm install
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Usage
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- To run the frontend
 
-## Learn More
+```sh
+cd spinup-dash && npm start
+cd OauthBackend && node index.js
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Authors
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+👤 **Rajat Maheshwari, Hiten Sharma**
 
-### Code Splitting
+## Show your support
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Give a ⭐️ if this project helped you!
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
