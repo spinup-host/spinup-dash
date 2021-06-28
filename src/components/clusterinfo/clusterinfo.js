@@ -1,5 +1,6 @@
 import { Col, Row, Modal, Input, Button, Divider } from "antd";
 import { useState } from "react";
+import DatabaseForDashboard from "../databases/dbsForDashboard";
 import "./clusterinfo.css";
 
 const ClusterInfo = () => {
@@ -22,6 +23,10 @@ const ClusterInfo = () => {
 
   const handleName = (e) => {
     setName(e.target.value);
+  };
+
+  const selectDatabase = (db) => {
+    setDatabase(db);
   };
 
   return (
@@ -81,7 +86,7 @@ const ClusterInfo = () => {
         >
           <p style={{ color: "#738095" }}>Name your Cluster</p>
           <Input
-            bordered={false}
+            bordered={true}
             className="cluster-name"
             size="large"
             placeholder="Cluster Name"
@@ -92,11 +97,62 @@ const ClusterInfo = () => {
               color: "white",
               margin: "0",
               padding: "0",
+              borderTop: "0px",
+              borderLeft: "0px",
+              borderRight: "0px",
+              borderBottomColor: "#5cfff3",
             }}
           />
           <br />
           <br />
           <p style={{ color: "#738095" }}>Choose database</p>
+          <Row>
+            <Col span={8}>
+              <button
+                onClick={()=>setDatabase("postgresql")}
+                style={{
+                  border: "0px solid transparent",
+                  background: "transparent",
+                  cursor:"pointer"
+                }}
+              >
+                <DatabaseForDashboard
+                  databaseSelected={database}
+                  databaseRendering={"postgresql"}
+                />
+              </button>
+            </Col>
+            <Col span={8}>
+              <button
+                onClick={()=>setDatabase("mysql")}
+                style={{
+                  border: "0px solid transparent",
+                  background: "transparent",
+                  cursor:"pointer"
+                }}
+              >
+                <DatabaseForDashboard
+                  databaseSelected={database}
+                  databaseRendering={"mysql"}
+                />
+              </button>
+            </Col>
+            <Col span={8}>
+              <button
+                onClick={()=>setDatabase("ectd")}
+                style={{
+                  border: "0px solid transparent",
+                  background: "transparent",
+                  cursor:"pointer"
+                }}
+              >
+                <DatabaseForDashboard
+                  databaseSelected={database}
+                  databaseRendering={"ectd"}
+                />
+              </button>
+            </Col>
+          </Row>
           <p style={{ color: "#738095" }}>Choose Version</p>
           <Divider />
         </Modal>

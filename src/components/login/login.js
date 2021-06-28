@@ -1,29 +1,43 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./login.css";
 import Logo from "../../assets/images/Logo.png";
 import { useDispatch } from "react-redux";
 import { loggingIn } from "../../actions/logIn";
 import { useHistory } from "react-router-dom";
 import { loginOauth } from "../../api/loginCalls";
+import { css } from "@emotion/react";
+import HashLoader from "react-spinners/HashLoader";
+
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: red;
+`;
+//this is for loading
 
 const Login = () => {
   let history = useHistory();
   const dispatch = useDispatch();
-
+  const [isLoading,setIsLoading]=useState(false);
   const handleClick = () => {
     window.location.href = process.env.REACT_APP_URL;
   };
 
-  useEffect(() => {
+  useEffect(() => {    
     var code =
       window.location.href.match(/\?code=(.*)/) &&
       window.location.href.match(/\?code=(.*)/)[1];
     //generate user data from oauth and dispatch to redux
     async function getUserData(code) {
+      setIsLoading(true);
       var res = await loginOauth(code);
       if (res.data !== "No GitHub Code") {
         dispatch(loggingIn(res.data));
+        setIsLoading(false);
         history.push("/dashboard");
+      }
+      else{
+        setIsLoading(false);//add notification here for error
       }
     }
     getUserData(code);
@@ -31,7 +45,8 @@ const Login = () => {
 
   return (
     <div className="Background">
-      <div className="Rectangle">
+      {!isLoading ? (
+        <div className="Rectangle">
         <div className="LogoStyle">
           <img src={Logo} alt="logo"></img>
         </div>
@@ -46,6 +61,8 @@ const Login = () => {
           <div className="text-style">Get started with GitHub</div>
         </button>
       </div>
+      ) : null}
+      <HashLoader color="#42e8e0" loading={isLoading} css={override} size={80} />
     </div>
   );
 };
