@@ -1,12 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
+
 import Navbar from "../navbar/navbar";
-import ClusterInfo from "../clusterinfo/clusterinfo";
+import AllCluster from "../allcluster/allcluster";
+
+import { useSelector } from "react-redux";
 
 const Dashboard = () => {
+  var history = useHistory();
+
+  const userDetails = useSelector((state) => state.userLogs);
+
+  useEffect(() => {
+    if (!userDetails.username) {
+      history.push("/");
+    }
+  }, []);
+
   return (
     <>
-      <Navbar />
-      <ClusterInfo />
+      <Navbar userDetails={userDetails} />
+      <AllCluster />
     </>
   );
 };
