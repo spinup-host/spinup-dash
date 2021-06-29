@@ -18,7 +18,7 @@ const Dashboard = () => {
       history.push("/");
     } else {
       userDetails = JSON.parse(localStorage.getItem("details"));
-      console.log(JSON.parse(localStorage.getItem("details")));
+      // console.log(JSON.parse(localStorage.getItem("details")));
       setUser(userDetails);
     }
   }, []);

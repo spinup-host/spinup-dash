@@ -1,0 +1,19 @@
+.selectedVersion{
+    width: 59px;
+    height: 40px;
+    flex-grow: 0;
+    /* margin: 14px 4px 47px 0; */
+    padding: 10px 22px 10px 21px;
+    border-radius: 3px;
+    background-color: #c7d4e9;
+}
+
+.unSelectedVersion{
+    width: 60px;
+    height: 40px;
+    flex-grow: 0;
+    /* margin: 14px 4px 47px; */
+    padding: 10px 23px 10px 21px;
+    border-radius: 8px;
+    background-color: #cecece;
+}

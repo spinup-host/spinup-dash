@@ -14,12 +14,10 @@ const DatabaseForDashboard = (props) => {
   }
   if(databaseRendering==="ectd"){
       imageLink="https://dbdb.io/media/logos/etcd.png";
-  }
-  console.log(imageLink);
+  }  
 
   const renderDb = () => {    
-    if (databaseRendering == dataBaseSelected) {
-        console.log("db");
+    if (databaseRendering === dataBaseSelected) {        
       return (
         <div className="databaseSelected">
           <img src={imageLink} alt={databaseRendering} className="imageDb"></img>

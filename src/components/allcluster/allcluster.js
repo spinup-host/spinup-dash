@@ -1,6 +1,7 @@
 import { Col, Row, Modal, Input, Button, Divider } from "antd";
 import { useState } from "react";
 import DatabaseForDashboard from "../databases/dbsForDashboard";
+import DatabaseVersion from "../dbVersions/dbversions";
 import "./allcluster.css";
 
 const AllCluster = () => {
@@ -8,7 +9,8 @@ const AllCluster = () => {
   const [name, setName] = useState("");
   const [database, setDatabase] = useState("postgresql");
   const [version, setVersion] = useState(13);
-
+  const allDbs = ["postgresql", "mysql", "ectd"];
+  const allVersions = [13,12,11,10];
   const showModal = () => {
     setIsModalVisible(true);
   };
@@ -45,6 +47,7 @@ const AllCluster = () => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            cursor:"pointer"
           }}
         >
           <h2 style={{ color: "white" }}>Add new</h2>
@@ -103,7 +106,63 @@ const AllCluster = () => {
           <br />
           <p style={{ color: "#738095" }}>Choose database</p>
           <Row>
-            <Col span={8}>
+            {allDbs.map((dbName) => {
+              return (
+                <Col span={8}>
+                  <button
+                    onClick={() => setDatabase(dbName)}
+                    style={{
+                      border: "0px solid transparent",
+                      background: "transparent",
+                      cursor: "pointer",
+                    }}
+                    key={dbName} //change key to something else at some point
+                  >
+                    <DatabaseForDashboard
+                      databaseSelected={database}
+                      databaseRendering={dbName}
+                    />
+                  </button>
+                </Col>
+              );
+            })}
+          </Row>
+          <br />
+          <p style={{ color: "#738095" }}>Choose Version</p>
+          <Row justify="start">
+            {allVersions.map((versionPassed) => {
+              return (
+                <Col span={4}>
+                  <button
+                    onClick={() => setVersion(versionPassed)}
+                    style={{
+                      border: "0px solid transparent",
+                      background: "transparent",
+                      cursor: "pointer",
+                    }}
+                    key={versionPassed} //change key to something else at some point
+                  >
+                    <DatabaseVersion
+                      selectedVersion={version}
+                      currVersion={versionPassed}
+                    />
+                  </button>
+                </Col>
+              );
+            })}
+          </Row>
+          <Divider />
+        </Modal>
+      </Col>
+      <Col xxl={1} xl={1} lg={1} md={1} />
+    </Row>
+  );
+};
+
+export default AllCluster;
+//original code for all databases before map---(below)
+{
+  /* <Col span={8}>
               <button
                 onClick={() => setDatabase("postgresql")}
                 style={{
@@ -147,17 +206,5 @@ const AllCluster = () => {
                   databaseRendering={"ectd"}
                 />
               </button>
-            </Col>
-          </Row>
-          <br />
-          <br />
-          <p style={{ color: "#738095" }}>Choose Version</p>
-          <Divider />
-        </Modal>
-      </Col>
-      <Col xxl={1} xl={1} lg={1} md={1} />
-    </Row>
-  );
-};
-
-export default AllCluster;
+            </Col> */
+}
