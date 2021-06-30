@@ -11,8 +11,23 @@ import {
   EyeInvisibleOutlined,
   EyeTwoTone,
 } from "@ant-design/icons";
+import NotificationContainer from "../notifications/container";
+import { createNotification } from "../notifications/notify";
 
 const { TabPane } = Tabs;
+
+//some css for selected and unselected buttons (config , databses and monitoring)
+const selectedElement = {
+  marginLeft: "40px",
+  color: "#738095",
+  borderBottom: "3px solid #ff9580",  
+  color: "#ffffff",
+  fontWeight:"500"
+};
+
+const notSelectedElement = {
+
+}
 
 const ClusterDetails = () => {
   const [host, setHost] = useState("hktfgjaymvppxurjixty.spinup.host");
@@ -22,7 +37,7 @@ const ClusterDetails = () => {
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
   useEffect(() => {
-    console.log(username);
+    // console.log(username);
   }, [username]);
   return (
     <>
@@ -46,13 +61,28 @@ const ClusterDetails = () => {
           >
             <b style={{ color: "black" }}>Not Connected</b>
           </Tag>
-          <p style={{ color: "#3fd8d7", marginTop: "9px", marginLeft: "15px" }}>
+          <p
+            style={{
+              color: "#3fd8d7",
+              marginTop: "9px",
+              marginLeft: "15px",
+              cursor: "pointer",
+            }}
+          >
             <SyncOutlined /> Refresh
           </p>
         </Col>
         <Col xxl={11} xl={11} lg={11} xs={9} md={9} sm={9}>
-          <Tag color="#2c383c" style={{ float: "right", borderRadius: "5px" }}>
-            <h2 style={{ color: "#dcdce5", marginTop: "9px" }}>
+          <Tag
+            color="#2c383c"
+            style={{ float: "right", borderRadius: "5px" }}
+            onClick={() => {
+              createNotification("success", "Copied Link!");
+            }}
+          >
+            <h2
+              style={{ color: "#dcdce5", marginTop: "9px", cursor: "pointer" }}
+            >
               <CopyOutlined /> Copy Host Link
             </h2>
           </Tag>
@@ -70,21 +100,44 @@ const ClusterDetails = () => {
           sm={20}
           style={{ display: "flex" }}
         >
+          <Button
+           style={{
+            border:"0px solid transparent",
+            background:"transparent"
+           }}
+           onClick={()=>{createNotification("working","Working on it!!")}}
+          >
           <h3 style={{ color: "#738095" }}>
             <b>
               <LineChartOutlined /> Monitoring
             </b>
           </h3>
+          </Button>
+          <Button
+           style={{
+            border:"0px solid transparent",
+            background:"transparent"
+           }}
+           onClick={()=>{createNotification("working","Working on it!!")}}
+          >
           <h3 style={{ marginLeft: "40px", color: "#738095" }}>
             <b>
               <DatabaseOutlined /> Databases
             </b>
           </h3>
-          <h3 style={{ marginLeft: "40px", color: "#738095" }}>
-            <b>
+          </Button>
+          <button
+          style={{
+            border:"0px solid transparent",
+            background:"transparent"
+          }}
+          >
+          <h3>
+            <b style={selectedElement}>
               <SettingOutlined /> Configurations
             </b>
           </h3>
+          </button>
         </Col>
         <Col xxl={4} xl={4} lg={4} xs={2} md={1} sm={2} />
       </Row>
@@ -282,6 +335,10 @@ const ClusterDetails = () => {
             color: "black",
             backgroundColor: "#212936",
           }}
+          onClick={() => {
+            setPassword("");
+            setConfirm("");
+          }}
         >
           <b style={{ color: "#42e8e0" }}>Cancel</b>
         </Button>
@@ -292,6 +349,7 @@ const ClusterDetails = () => {
           <Divider style={{ backgroundColor: "#313b4d", marginTop: "30px" }} />
         </Col>
       </Row>
+      <NotificationContainer />
     </>
   );
 };
