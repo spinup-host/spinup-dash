@@ -33,7 +33,7 @@ const Login = () => {
       var res = await loginOauth(code);
       if (res.data !== "No GitHub Code") {
         localStorage.setItem("details", JSON.stringify(res.data));
-        dispatch(loggingIn(res.data));
+        dispatch(loggingIn(res.data));//redux storage can be rmoved later maybe...
         setIsLoading(false);
         history.push("/dashboard");
       } else {

@@ -34,8 +34,10 @@ const ClusterDetails = () => {
   const [database, setDatabase] = useState("postgres");
   const [port, setPort] = useState(5432);
   const [username, setUsername] = useState("johndoe");
-  const [password, setPassword] = useState("");
+  const [passwordChanging, setPasswordChanging] = useState("");
+  const [realPassword,setRealPassword]=useState("johndoe");
   const [confirm, setConfirm] = useState("");
+  const [changePasswordMode,setChangePasswordMode]=useState(false);
   useEffect(() => {
     // console.log(username);
   }, [username]);
@@ -101,42 +103,46 @@ const ClusterDetails = () => {
           style={{ display: "flex" }}
         >
           <Button
-           style={{
-            border:"0px solid transparent",
-            background:"transparent"
-           }}
-           onClick={()=>{createNotification("working","Working on it!!")}}
+            style={{
+              border: "0px solid transparent",
+              background: "transparent",
+            }}
+            onClick={() => {
+              createNotification("working", "Working on it!!");
+            }}
           >
-          <h3 style={{ color: "#738095" }}>
-            <b>
-              <LineChartOutlined /> Monitoring
-            </b>
-          </h3>
+            <h3 style={{ color: "#738095" }}>
+              <b>
+                <LineChartOutlined /> Monitoring
+              </b>
+            </h3>
           </Button>
           <Button
-           style={{
-            border:"0px solid transparent",
-            background:"transparent"
-           }}
-           onClick={()=>{createNotification("working","Working on it!!")}}
+            style={{
+              border: "0px solid transparent",
+              background: "transparent",
+            }}
+            onClick={() => {
+              createNotification("working", "Working on it!!");
+            }}
           >
-          <h3 style={{ marginLeft: "40px", color: "#738095" }}>
-            <b>
-              <DatabaseOutlined /> Databases
-            </b>
-          </h3>
+            <h3 style={{ marginLeft: "40px", color: "#738095" }}>
+              <b>
+                <DatabaseOutlined /> Databases
+              </b>
+            </h3>
           </Button>
           <button
-          style={{
-            border:"0px solid transparent",
-            background:"transparent"
-          }}
+            style={{
+              border: "0px solid transparent",
+              background: "transparent",
+            }}
           >
-          <h3>
-            <b style={selectedElement}>
-              <SettingOutlined /> Configurations
-            </b>
-          </h3>
+            <h3>
+              <b style={selectedElement}>
+                <SettingOutlined /> Configurations
+              </b>
+            </h3>
           </button>
         </Col>
         <Col xxl={4} xl={4} lg={4} xs={2} md={1} sm={2} />
@@ -251,7 +257,9 @@ const ClusterDetails = () => {
       <Row style={{ marginTop: "25px" }}>
         <Col xxl={3} xl={3} lg={3} xs={2} md={3} sm={2} />
         <Col xxl={4} xl={4} lg={4} xs={20} md={10} sm={20}>
-          <p style={{ color: "#738095" }}>Enter new password</p>
+          <p style={{ color: "#738095" }}>
+            {!changePasswordMode ? "Password" : "Enter new password"}
+          </p>
           <Input.Password
             bordered={false}
             style={{
@@ -267,12 +275,15 @@ const ClusterDetails = () => {
                 <EyeInvisibleOutlined style={{ color: "white" }} />
               )
             }
-            value={password}
+            value={changePasswordMode ? passwordChanging : realPassword}
             onChange={(e) => {
-              setPassword(e.target.value);
+              if (changePasswordMode) {
+                setPasswordChanging(e.target.value);
+              }
             }}
           />
         </Col>
+       {changePasswordMode ? <div>
         <Col xxl={1} xl={1} lg={1} xs={2} md={3} sm={2} />
         <Card
           bordered={false}
@@ -290,35 +301,40 @@ const ClusterDetails = () => {
           <p>&nbsp;&nbsp;&nbsp;&nbsp;1 number (0-9)</p>
           <p>&nbsp;&nbsp;&nbsp;&nbsp;1 special character(-,_,$,#,!)</p>
         </Card>
+       </div> :null}
       </Row>
       <Row style={{ marginTop: "-120px" }}>
         <Col xxl={3} xl={3} lg={3} xs={2} md={3} sm={2} />
         <Col xxl={4} xl={4} lg={4} xs={20} md={10} sm={20}>
-          <p style={{ color: "#738095" }}>Confirm password</p>
-          <Input.Password
-            bordered={false}
-            style={{
-              backgroundColor: "#394150",
-              color: "white",
-              height: "40px",
-              borderRadius: "5px",
-            }}
-            iconRender={(visible) =>
-              visible ? (
-                <EyeTwoTone style={{ color: "white" }} />
-              ) : (
-                <EyeInvisibleOutlined style={{ color: "white" }} />
-              )
-            }
-            value={confirm}
-            onChange={(e) => {
-              setConfirm(e.target.value);
-            }}
-          />
+          {changePasswordMode ? (
+            <div>
+              <p style={{ color: "#738095" }}>Confirm password</p>
+              <Input.Password
+                bordered={false}
+                style={{
+                  backgroundColor: "#394150",
+                  color: "white",
+                  height: "40px",
+                  borderRadius: "5px",
+                }}
+                iconRender={(visible) =>
+                  visible ? (
+                    <EyeTwoTone style={{ color: "white" }} />
+                  ) : (
+                    <EyeInvisibleOutlined style={{ color: "white" }} />
+                  )
+                }
+                value={confirm}
+                onChange={(e) => {
+                  setConfirm(e.target.value);
+                }}
+              />
+            </div>
+          ) : null}
         </Col>
         <Col xxl={3} xl={3} lg={3} xs={2} md={3} sm={2} />
       </Row>
-      <Row style={{ marginTop: "25px" }}>
+      <Row style={!changePasswordMode ? {marginTop:"155px"} : {marginTop:"25px"}}>
         <Col xxl={3} xl={3} lg={3} xs={2} md={3} sm={2} />
         <Button
           type="text"
@@ -326,22 +342,37 @@ const ClusterDetails = () => {
             color: "black",
             backgroundColor: "#42e8e0",
           }}
-        >
-          <b>Save Changes</b>
-        </Button>
-        <Button
-          type="text"
-          style={{
-            color: "black",
-            backgroundColor: "#212936",
-          }}
           onClick={() => {
-            setPassword("");
-            setConfirm("");
+            if (changePasswordMode) {            
+              setRealPassword(passwordChanging);
+              //api call and notifiaction create here
+
+              setChangePasswordMode(false);
+            }else{
+              setChangePasswordMode(true);
+            }
           }}
         >
-          <b style={{ color: "#42e8e0" }}>Cancel</b>
+          <b>{changePasswordMode ? "Save Changes" : "Change Password"}</b>
         </Button>
+        {changePasswordMode ? (
+          <div>
+            <Button
+              type="text"
+              style={{
+                color: "black",
+                backgroundColor: "#212936",
+              }}
+              onClick={() => {
+                setPasswordChanging("");
+                setConfirm("");
+                setChangePasswordMode(false);
+              }}
+            >
+              <b style={{ color: "#42e8e0" }}>Cancel</b>
+            </Button>
+          </div>
+        ) : null}
       </Row>
       <Row>
         <Col xxl={3} xl={3} lg={3} xs={2} md={3} sm={2} />
