@@ -10,6 +10,7 @@ import {
   SyncOutlined,
   EyeInvisibleOutlined,
   EyeTwoTone,
+  CloseCircleOutlined
 } from "@ant-design/icons";
 import NotificationContainer from "../notifications/container";
 import { createNotification } from "../notifications/notify";
@@ -40,7 +41,8 @@ const ClusterDetails = () => {
   const [changePasswordMode,setChangePasswordMode]=useState(false);
   useEffect(() => {
     // console.log(username);
-  }, [username]);
+  }, [username]);  
+
   return (
     <>
       <Row style={{ marginTop: "50px" }}>
@@ -256,7 +258,15 @@ const ClusterDetails = () => {
       </Row>
       <Row style={{ marginTop: "25px" }}>
         <Col xxl={3} xl={3} lg={3} xs={2} md={3} sm={2} />
-        <Col xxl={4} xl={4} lg={4} xs={20} md={10} sm={20}>
+        <Col
+          xxl={4}
+          xl={4}
+          lg={4}
+          xs={20}
+          md={10}
+          sm={20}
+          style={{ marginRight: "1em" }}
+        >
           <p style={{ color: "#738095" }}>
             {!changePasswordMode ? "Password" : "Enter new password"}
           </p>
@@ -283,25 +293,27 @@ const ClusterDetails = () => {
             }}
           />
         </Col>
-       {changePasswordMode ? <div>
-        <Col xxl={1} xl={1} lg={1} xs={2} md={3} sm={2} />
-        <Card
-          bordered={false}
-          style={{
-            backgroundColor: "#212936",
-            color: "white",
-            lineHeight: "1",
-            borderLeft: "1px solid #283141",
-          }}
-        >
-          <p>Must be atleast :</p>
-          <p>&nbsp;&nbsp;&nbsp;&nbsp;10-16 alpha-numeric characters</p>
-          <p>&nbsp;&nbsp;&nbsp;&nbsp;1 uppercase letter (A,B,..Z)</p>
-          <p>&nbsp;&nbsp;&nbsp;&nbsp;1 lowercase letter (a,b,..z)</p>
-          <p>&nbsp;&nbsp;&nbsp;&nbsp;1 number (0-9)</p>
-          <p>&nbsp;&nbsp;&nbsp;&nbsp;1 special character(-,_,$,#,!)</p>
-        </Card>
-       </div> :null}
+        {changePasswordMode ? (
+          <div>
+            <Col xxl={1} xl={1} lg={1} xs={2} md={3} sm={2} />
+            <Card
+              bordered={false}
+              style={{
+                backgroundColor: "#212936",
+                color: "white",
+                lineHeight: "1",
+                borderLeft: "1px solid #283141",
+              }}
+            >
+              <p>Must be atleast :</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;10-16 alpha-numeric characters</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;1 uppercase letter (A,B,..Z)</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;1 lowercase letter (a,b,..z)</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;1 number (0-9)</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;1 special character(-,_,$,#,!)</p>
+            </Card>
+          </div>
+        ) : null}
       </Row>
       <Row style={{ marginTop: "-120px" }}>
         <Col xxl={3} xl={3} lg={3} xs={2} md={3} sm={2} />
@@ -316,6 +328,8 @@ const ClusterDetails = () => {
                   color: "white",
                   height: "40px",
                   borderRadius: "5px",
+                  border:
+                    passwordChanging != confirm ? "#e84c42 3px solid" : null,
                 }}
                 iconRender={(visible) =>
                   visible ? (
@@ -334,21 +348,43 @@ const ClusterDetails = () => {
         </Col>
         <Col xxl={3} xl={3} lg={3} xs={2} md={3} sm={2} />
       </Row>
-      <Row style={!changePasswordMode ? {marginTop:"155px"} : {marginTop:"25px"}}>
+
+      {confirm != passwordChanging ? (
+        <div>
+          <Row style={{ marginTop: "0.5em" }}>
+            <Col xxl={3} xl={3} lg={3} xs={2} md={3} sm={2} />
+            <p style={{ color: "#e84c42", fontFamily: "SFProText-Regular" }}>
+              {" "}
+              <CloseCircleOutlined
+                style={{ color: "#e84c42", marginRight: "0.3em" }}
+              />
+              Passwords don't match
+            </p>
+          </Row>
+        </div>
+      ) : null}
+
+      <Row
+        style={
+          !changePasswordMode ? { marginTop: "155px" } : { marginTop: "25px" }
+        }
+      >
         <Col xxl={3} xl={3} lg={3} xs={2} md={3} sm={2} />
         <Button
           type="text"
           style={{
             color: "black",
             backgroundColor: "#42e8e0",
+            opacity: confirm != passwordChanging ? 0.5 : 1.0,
           }}
+          disabled={confirm != passwordChanging}
           onClick={() => {
-            if (changePasswordMode) {            
+            if (changePasswordMode) {
               setRealPassword(passwordChanging);
               //api call and notifiaction create here
 
               setChangePasswordMode(false);
-            }else{
+            } else {
               setChangePasswordMode(true);
             }
           }}
