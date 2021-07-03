@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { Row, Col, Tag, Divider, Tabs, Input, Card, Button } from "antd";
+import { Row, Col, Tag, Divider, Input, Card, Button } from "antd";
 
 import {
   CopyOutlined,
@@ -10,25 +10,19 @@ import {
   SyncOutlined,
   EyeInvisibleOutlined,
   EyeTwoTone,
-  CloseCircleOutlined
+  CloseCircleOutlined,
 } from "@ant-design/icons";
 import NotificationContainer from "../notifications/container";
 import { createNotification } from "../notifications/notify";
-
-const { TabPane } = Tabs;
 
 //some css for selected and unselected buttons (config , databses and monitoring)
 const selectedElement = {
   marginLeft: "40px",
   color: "#738095",
-  borderBottom: "3px solid #ff9580",  
+  borderBottom: "3px solid #ff9580",
   color: "#ffffff",
-  fontWeight:"500"
+  fontWeight: "500",
 };
-
-const notSelectedElement = {
-
-}
 
 const ClusterDetails = () => {
   const [host, setHost] = useState("hktfgjaymvppxurjixty.spinup.host");
@@ -36,12 +30,9 @@ const ClusterDetails = () => {
   const [port, setPort] = useState(5432);
   const [username, setUsername] = useState("johndoe");
   const [passwordChanging, setPasswordChanging] = useState("");
-  const [realPassword,setRealPassword]=useState("johndoe");
+  const [realPassword, setRealPassword] = useState("johndoe");
   const [confirm, setConfirm] = useState("");
-  const [changePasswordMode,setChangePasswordMode]=useState(false);
-  useEffect(() => {
-    // console.log(username);
-  }, [username]);  
+  const [changePasswordMode, setChangePasswordMode] = useState(false);
 
   return (
     <>
