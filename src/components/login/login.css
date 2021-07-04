@@ -5,20 +5,28 @@
 }
 
 .Background {
-  padding: 200px 500px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
   overflow-x: hidden;
 }
 
 .Rectangle {
-  width: 400px;
-  height: 320px;
+  width: 30em;
+  height: 22em;
   flex-grow: 0;
   padding: 36px 41px 48px 47px;
   border-radius: 10px;
   background-color: #121826;
   text-align: center;
-  margin-left: auto;
-  margin-right: auto;
+  margin:  0 auto;
+  /* margin-left: auto;
+  margin-right: auto; */
 }
 
 .LogoStyle {
