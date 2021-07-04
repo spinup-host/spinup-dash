@@ -20,7 +20,8 @@ const Login = () => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const handleClick = () => {
-    window.location.href = process.env.REACT_APP_URL;
+    const redirect = `https://github.com/login/oauth/authorize?client_id=${process.env.REACT_APP_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_REDIRECT_URI}`;
+    window.location.href = redirect;
   };
 
   useEffect(() => {
@@ -33,7 +34,7 @@ const Login = () => {
       var res = await loginOauth(code);
       if (res.data !== "No GitHub Code") {
         localStorage.setItem("details", JSON.stringify(res.data));
-        dispatch(loggingIn(res.data));//redux storage can be rmoved later maybe...
+        dispatch(loggingIn(res.data)); //redux storage can be rmoved later maybe...
         setIsLoading(false);
         history.push("/dashboard");
       } else {
