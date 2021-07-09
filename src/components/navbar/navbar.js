@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 
 import Layout, { Header } from "antd/lib/layout/layout";
 import { Col, Menu, Row, Button, Dropdown } from "antd";
-import { LogoutOutlined } from "@ant-design/icons";
+import { LogoutOutlined,SettingOutlined } from "@ant-design/icons";
 
 import Logo from "../../assets/images/Logo.png";
 import { loggingOut } from "../../actions/logOut";
@@ -22,6 +22,10 @@ const Navbar = ({ userDetails }) => {
     history.push("/");
   };
 
+  const handleSettings = () =>{
+    history.push("/dashboard/settings");
+  }
+
   const menu = (
     <Menu style={{ backgroundColor: "#212936" }}>
       <Menu.Item
@@ -32,6 +36,11 @@ const Navbar = ({ userDetails }) => {
       </Menu.Item>
       <Menu.Item key="name" style={{ color: "white", pointerEvents: "none" }}>
         {userDetails ? userDetails.name : <></>}
+      </Menu.Item>
+      <Menu.Item key="settings" style={{ color: "white" ,backgroundColor: "#212936"}}>
+        <div onClick={handleSettings}>
+        <SettingOutlined /> <b>Settings</b>
+        </div>
       </Menu.Item>
       <Menu.Item
         key="logout"
