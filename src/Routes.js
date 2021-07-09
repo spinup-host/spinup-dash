@@ -3,6 +3,7 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import Login from "./components/login/login";
 import Dashboard from "./components/dashboard/dashboard";
 import ClusterInfo from "./components/clusterinfo/clusterinfo";
+import Settings from "./components/settings/settings";
 
 const ProtectedRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -23,6 +24,7 @@ const Routes = () => {
       <Route path="/" exact component={Login} />
       <Route path="/login" exact component={Login} />
       <Route path="/dashboard" exact component={Dashboard} />
+      <Route path="/dashboard/settings" exact component={Settings}/>
       <Route path="/dashboard/:id" component={ClusterInfo} />
     </Switch>
   );
