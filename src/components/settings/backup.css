@@ -1,0 +1,35 @@
+.backUpTitle{
+    color: #ffffff;
+    font-size: 1.3em;
+    font-family: system-ui,-apple-system,BlinkMacSystemFont,Helvetica Neue,Lucida Grande,Segoe UI;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+.dataTitles{
+    color: #738095;
+    font-family: system-ui,-apple-system,BlinkMacSystemFont,Helvetica Neue,Lucida Grande,Segoe UI;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+.radioOptions{
+    color: #ffffff;
+    font-family: system-ui,-apple-system,BlinkMacSystemFont,Helvetica Neue,Lucida Grande,Segoe UI;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+.saveChanges{
+    color:#000000;
+    background-color: rgba(66, 232, 224, 0.4);
+    border: 0px;
+    border-radius: 5px;
+    font-family: system-ui,-apple-system,BlinkMacSystemFont,Helvetica Neue,Lucida Grande,Segoe UI;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+.saveChanges:hover{
+    background-color: rgba(43, 63, 129, 0.4);
+}

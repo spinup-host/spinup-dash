@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import Navbar from "../navbar/navbar";
 import { UserOutlined, HistoryOutlined } from "@ant-design/icons";
 import Profile from "./profile";
+import Backup from "./backup";
 
 //css files
 import "./settings.css";
@@ -13,6 +14,9 @@ import "antd/dist/antd.css";
 const Settings = () => {
   var history = useHistory();
   const [user, setUser] = useState(null);
+  
+  const [showSetting,setShowSetting]=useState("profile");
+
   var userDetails = useSelector((state) => state.userLogs);
 
   //this is to get userdetails
@@ -29,7 +33,7 @@ const Settings = () => {
   return (
     <>
       <Navbar userDetails={user} />
-
+      {/* The Settings button bar */}
       <Row>
         <Col xxl={3} xl={3} lg={3} xs={2} md={3} sm={2} />
         <Col>
@@ -57,7 +61,7 @@ const Settings = () => {
               sm={8}
               style={{ display: "flex" }}
             >
-              <Button className="settingsButton" type="primary">
+              <Button className="settingsButton" type="primary" onClick={()=>{setShowSetting("profile")}}>
                 <UserOutlined style={{ color: "white" }} />
                 Profile
               </Button>
@@ -74,15 +78,16 @@ const Settings = () => {
               sm={8}
               style={{ display: "flex" }}
             >
-              <Button className="backupButton" type="primary">
+              <Button className="backupButton" type="primary" onClick={()=>{setShowSetting("backup")}}>
                 <HistoryOutlined style={{ color: "white" }} />
                 Backup
               </Button>
             </Col>
           </Row>
         </Col>
+        {/* The Settings button bar */}
         <Col xxl={3} xl={3} lg={3} xs={2} md={3} sm={2} />
-        <Profile />
+        {showSetting === "profile" ? <Profile /> : <Backup />}        
       </Row>
     </>
   );

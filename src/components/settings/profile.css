@@ -3,3 +3,10 @@
     height: 90px;
     width: 90px;
 }
+
+.inputTitles{
+    color: #738095;
+    font-family: system-ui,-apple-system,BlinkMacSystemFont,Helvetica Neue,Lucida Grande,Segoe UI;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
