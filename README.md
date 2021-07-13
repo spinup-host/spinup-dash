@@ -59,7 +59,4 @@ cd OauthBackend && node index.js
 
 ## Show your support
 
-Give a ⭐️ if this project helped you!
-API Connections are to be written, with the actual Golang backend
-
----
+## Give a ⭐️ if this project helped you!
