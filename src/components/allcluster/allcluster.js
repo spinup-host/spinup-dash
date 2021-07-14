@@ -1,7 +1,8 @@
-import { Col, Row, Modal, Input, Button, Divider } from "antd";
+import { Col, Row, Modal, Input, Button, Divider, notification } from "antd";
 import { useState } from "react";
 import DatabaseForDashboard from "../databases/dbsForDashboard";
 import DatabaseVersion from "../dbVersions/dbversions";
+import axios from "axios";
 import "./allcluster.css";
 
 const AllCluster = () => {
@@ -10,13 +11,36 @@ const AllCluster = () => {
   const [database, setDatabase] = useState("postgresql");
   const [version, setVersion] = useState(13);
   const allDbs = ["postgresql", "mysql", "ectd"];
-  const allVersions = [13,12,11,10];
+  const allVersions = [13, 12, 11, 10];
   const showModal = () => {
     setIsModalVisible(true);
   };
 
   const handleOk = () => {
-    setIsModalVisible(false);
+    if (name.length === 0) {
+      //Ant Design Error Notification
+      notification.error({
+        message: "Please enter a cluster name.",
+        description: "The cluster name is required.",
+      });
+      return;
+    }
+    axios
+      .post(`${process.env.REACT_APP_SERVER_URI}`, {
+        ClusterName: name,
+        Name: database,
+        version: version,
+      })
+      .then((response) => {
+        console.log(response);
+        setIsModalVisible(false);
+        setName("");
+        setVersion(13);
+        setDatabase("postgresql");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const handleCancel = () => {
@@ -47,7 +71,7 @@ const AllCluster = () => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            cursor:"pointer"
+            cursor: "pointer",
           }}
         >
           <h2 style={{ color: "white" }}>Add new</h2>
