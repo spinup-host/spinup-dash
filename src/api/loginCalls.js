@@ -16,8 +16,17 @@ export const loginOauth = async (code) => {
   if (code) {
     var FormWithCode = new FormData();
     FormWithCode.append("code", code);
-    var res = await axios.post(loginUrlToken, FormWithCode, config);
-    return res;
+    try {
+      var res = await axios.post(loginUrlToken, FormWithCode, config);       
+      return res;
+    } catch (error) {
+      //change error based on Go server later
+      var res={
+        status:"500",
+        message:"Server error"
+      }    
+      return res;
+    }
   } else {
     var res = {
       data: "No GitHub Code",

@@ -7,6 +7,8 @@ import { useHistory } from "react-router-dom";
 import { loginOauth } from "../../api/loginCalls";
 import { css } from "@emotion/react";
 import HashLoader from "react-spinners/HashLoader";
+import NotificationContainer from "../notifications/container";
+import { createNotification } from "../notifications/notify";
 
 const override = css`
   display: block;
@@ -31,8 +33,12 @@ const Login = () => {
     //generate user data from oauth and dispatch to redux
     async function getUserData(code) {
       setIsLoading(true);
-      var res = await loginOauth(code);
-      if (res.data !== "No GitHub Code") {
+      var res = await loginOauth(code);      
+      if(res.status && res.status !== 200){
+        setIsLoading(false);
+        createNotification("error",res.message);
+      }
+      if (res.status && res.status == 200 && res.data !== "No GitHub Code") {
         localStorage.setItem("details", JSON.stringify(res.data));
         dispatch(loggingIn(res.data)); //redux storage can be rmoved later maybe...
         setIsLoading(false);
@@ -69,6 +75,7 @@ const Login = () => {
         css={override}
         size={80}
       />
+      <NotificationContainer/>
     </div>
   );
 };
