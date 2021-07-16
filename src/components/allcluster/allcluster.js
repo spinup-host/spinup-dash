@@ -4,6 +4,7 @@ import DatabaseForDashboard from "../databases/dbsForDashboard";
 import DatabaseVersion from "../dbVersions/dbversions";
 import { handleOk } from "../../api/createService";
 import "./allcluster.css";
+import NotificationContainer from "../notifications/container";
 
 const AllCluster = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -18,7 +19,7 @@ const AllCluster = () => {
 
   const handleFinish = async () => {
     setIsModalVisible(false);
-    console.log(name, database, version);
+    // console.log(name, database, version);
     var answer = await handleOk(name, database, version);
     setIsModalVisible(false);
     setName("");
@@ -40,6 +41,7 @@ const AllCluster = () => {
   };
 
   return (
+    <>
     <Row style={{ marginTop: "3%", color: "white" }}>
       <Col xxl={3} xl={3} lg={3} xs={2} md={3} sm={2} />
       <Col xxl={20} xl={18} lg={18} xs={22} md={20} sm={22}>
@@ -168,6 +170,8 @@ const AllCluster = () => {
       </Col>
       <Col xxl={1} xl={1} lg={1} md={1} />
     </Row>
+    <NotificationContainer/>
+    </>
   );
 };
 
