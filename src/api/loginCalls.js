@@ -14,9 +14,7 @@ const config = {
 
 export const loginOauth = async (code) => {
   if (code) {
-    var FormWithCode = new FormData();
-    FormWithCode.append("code", code);
-    var res = await axios.post(loginUrlToken, FormWithCode, config);
+    var res = await axios.post(loginUrlToken, { code: code }, config);
     return res;
   } else {
     var res = {

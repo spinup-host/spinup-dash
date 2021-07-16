@@ -8,9 +8,9 @@ import "./allcluster.css";
 const AllCluster = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [name, setName] = useState("");
-  const [database, setDatabase] = useState("postgresql");
+  const [database, setDatabase] = useState("postgres");
   const [version, setVersion] = useState(13);
-  const allDbs = ["postgresql", "mysql", "ectd"];
+  const allDbs = ["postgres", "mysql", "ectd"];
   const allVersions = [13, 12, 11, 10];
   const showModal = () => {
     setIsModalVisible(true);
@@ -27,6 +27,7 @@ const AllCluster = () => {
     }
     axios
       .post(`${process.env.REACT_APP_SERVER_URI}`, {
+        UserID: "replaceme",
         ClusterName: name,
         Name: database,
         version: version,
