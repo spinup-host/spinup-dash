@@ -14,8 +14,13 @@ const config = {
 
 export const loginOauth = async (code) => {
   if (code) {
-    var res = await axios.post(loginUrlToken, { code: code }, config);
-    return res;
+    try {
+      var res = await axios.post(loginUrlToken, { code: code }, config);
+      return res;
+    } catch (e) {
+      console.log(e);
+      return e;
+    }
   } else {
     var res = {
       data: "No GitHub Code",

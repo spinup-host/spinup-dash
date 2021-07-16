@@ -2,7 +2,7 @@ import { Col, Row, Modal, Input, Button, Divider, notification } from "antd";
 import { useState } from "react";
 import DatabaseForDashboard from "../databases/dbsForDashboard";
 import DatabaseVersion from "../dbVersions/dbversions";
-import axios from "axios";
+import { handleOk } from "../../api/createService";
 import "./allcluster.css";
 
 const AllCluster = () => {
@@ -16,32 +16,14 @@ const AllCluster = () => {
     setIsModalVisible(true);
   };
 
-  const handleOk = () => {
-    if (name.length === 0) {
-      //Ant Design Error Notification
-      notification.error({
-        message: "Please enter a cluster name.",
-        description: "The cluster name is required.",
-      });
-      return;
-    }
-    axios
-      .post(`${process.env.REACT_APP_SERVER_URI}`, {
-        UserID: "replaceme",
-        ClusterName: name,
-        Name: database,
-        version: version,
-      })
-      .then((response) => {
-        console.log(response);
-        setIsModalVisible(false);
-        setName("");
-        setVersion(13);
-        setDatabase("postgresql");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const handleFinish = async () => {
+    setIsModalVisible(false);
+    console.log(name, database, version);
+    var answer = await handleOk(name, database, version);
+    setIsModalVisible(false);
+    setName("");
+    setVersion(13);
+    setDatabase("postgresql");
   };
 
   const handleCancel = () => {
@@ -86,7 +68,7 @@ const AllCluster = () => {
           bodyStyle={{ backgroundColor: "#212936" }}
           visible={isModalVisible}
           title="Add New Cluster"
-          onOk={handleOk}
+          onOk={handleFinish}
           onCancel={handleCancel}
           footer={[
             <Button
@@ -107,7 +89,7 @@ const AllCluster = () => {
                 border: "none",
               }}
               key="submit"
-              onClick={handleOk}
+              onClick={handleFinish}
             >
               Spin up
             </Button>,

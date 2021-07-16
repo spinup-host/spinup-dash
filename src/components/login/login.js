@@ -33,12 +33,12 @@ const Login = () => {
     //generate user data from oauth and dispatch to redux
     async function getUserData(code) {
       setIsLoading(true);
-      var res = await loginOauth(code);      
-      if(res.status && res.status !== 200){
+      var res = await loginOauth(code);
+      if (res.status && res.status !== 200) {
         setIsLoading(false);
-        createNotification("error",res.message);
+        createNotification("error", res.message);
       }
-      if (res.status && res.status == 200 && res.data !== "No GitHub Code") {
+      if (res.status && res.status === 200 && res.data !== "No GitHub Code") {
         localStorage.setItem("details", JSON.stringify(res.data));
         dispatch(loggingIn(res.data)); //redux storage can be rmoved later maybe...
         setIsLoading(false);
@@ -75,7 +75,7 @@ const Login = () => {
         css={override}
         size={80}
       />
-      <NotificationContainer/>
+      <NotificationContainer />
     </div>
   );
 };

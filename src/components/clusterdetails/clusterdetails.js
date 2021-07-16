@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import { Row, Col, Tag, Divider, Input, Card, Button } from "antd";
 
@@ -320,7 +320,7 @@ const ClusterDetails = () => {
                   height: "40px",
                   borderRadius: "5px",
                   border:
-                    passwordChanging != confirm ? "#e84c42 3px solid" : null,
+                    passwordChanging !== confirm ? "#e84c42 3px solid" : null,
                 }}
                 iconRender={(visible) =>
                   visible ? (
@@ -340,7 +340,7 @@ const ClusterDetails = () => {
         <Col xxl={3} xl={3} lg={3} xs={2} md={3} sm={2} />
       </Row>
 
-      {confirm != passwordChanging ? (
+      {confirm !== passwordChanging ? (
         <div>
           <Row style={{ marginTop: "0.5em" }}>
             <Col xxl={3} xl={3} lg={3} xs={2} md={3} sm={2} />
@@ -366,9 +366,9 @@ const ClusterDetails = () => {
           style={{
             color: "black",
             backgroundColor: "#42e8e0",
-            opacity: confirm != passwordChanging ? 0.5 : 1.0,
+            opacity: confirm !== passwordChanging ? 0.5 : 1.0,
           }}
-          disabled={confirm != passwordChanging}
+          disabled={confirm !== passwordChanging}
           onClick={() => {
             if (changePasswordMode) {
               setRealPassword(passwordChanging);
