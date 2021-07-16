@@ -52,6 +52,11 @@ const AllCluster = () => {
     setName(e.target.value);
   };
 
+  //to make unique keys sorta
+  const generateKey = (pre) => {
+    return `${pre}_${new Date().getTime()}`;
+  };
+
   return (
     <Row style={{ marginTop: "3%", color: "white" }}>
       <Col xxl={3} xl={3} lg={3} xs={2} md={3} sm={2} />
@@ -141,7 +146,7 @@ const AllCluster = () => {
                       background: "transparent",
                       cursor: "pointer",
                     }}
-                    key={dbName} //change key to something else at some point
+                    key={generateKey(dbName)} //change key to something else at some point
                   >
                     <DatabaseForDashboard
                       databaseSelected={database}
@@ -165,7 +170,7 @@ const AllCluster = () => {
                       background: "transparent",
                       cursor: "pointer",
                     }}
-                    key={versionPassed} //change key to something else at some point
+                    key={generateKey(versionPassed)} //change key to something else at some point
                   >
                     <DatabaseVersion
                       selectedVersion={version}
