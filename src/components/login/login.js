@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "./login.css";
 import Logo from "../../assets/images/Logo.png";
 import { useDispatch } from "react-redux";
 import { loggingIn } from "../../actions/logIn";
@@ -9,7 +8,9 @@ import { css } from "@emotion/react";
 import HashLoader from "react-spinners/HashLoader";
 import NotificationContainer from "../notifications/container";
 import { createNotification } from "../notifications/notify";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
+import "./login.css";
 const override = css`
   display: block;
   margin: 0 auto;
@@ -59,12 +60,13 @@ const Login = () => {
           </div>
           <div className="Title">Welcome to SpinUp</div>
           <div className="subTitle">Connect with GitHub to get started</div>
-          <button onClick={handleClick} className="Button-primary">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/2048px-Octicons-mark-github.svg.png"
-              width="22px"
-              alt="GitHub Logo"
-            />
+          <button onClick={handleClick} className="Button-primary">            
+            <LazyLoadImage
+            width="22px"
+            alt="GitHub Logo"
+            effect="blur"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/2048px-Octicons-mark-github.svg.png" // use normal <img> attributes as props
+          />  
             <div className="text-style">Get started with GitHub</div>
           </button>
         </div>

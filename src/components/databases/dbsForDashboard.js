@@ -24,9 +24,9 @@ const DatabaseForDashboard = (props) => {
           <LazyLoadImage
             alt={databaseRendering}
             className="imageDb"
+            effect="blur"
             src={imageLink} // use normal <img> attributes as props
-          />          
-          {/* <img src={imageLink} alt={databaseRendering} className="imageDb"></img> */}
+          />                    
         </div>
       );
     } else {
@@ -35,9 +35,9 @@ const DatabaseForDashboard = (props) => {
           <LazyLoadImage
             alt={databaseRendering}
             className="imageDb"
+            effect="blur"
             src={imageLink} // use normal <img> attributes as props
-          />          
-        {/* <img src={imageLink} alt={databaseRendering} className="imageDb"></img> */}
+          />                  
         </div>
       );
     }

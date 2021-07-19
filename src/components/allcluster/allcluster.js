@@ -1,10 +1,15 @@
-import { Col, Row, Modal, Input, Button, Divider, notification } from "antd";
+import React from "react";
+import { Col, Row, Modal, Input, Button, Divider } from "antd";
 import { useState } from "react";
 import DatabaseForDashboard from "../databases/dbsForDashboard";
 import DatabaseVersion from "../dbVersions/dbversions";
 import { handleOk } from "../../api/createService";
-import "./allcluster.css";
 import NotificationContainer from "../notifications/container";
+import shortid from "shortid";
+//css
+import "./allcluster.css";
+
+const MemoedDatabases=React.memo(DatabaseForDashboard);
 
 const AllCluster = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -34,12 +39,7 @@ const AllCluster = () => {
   const handleName = (e) => {
     setName(e.target.value);
   };
-
-  //to make unique keys sorta
-  const generateKey = (pre) => {
-    return `${pre}_${new Date().getTime()}`;
-  };
-
+  
   return (
     <>
     <Row style={{ marginTop: "3%", color: "white" }}>
@@ -130,9 +130,13 @@ const AllCluster = () => {
                       background: "transparent",
                       cursor: "pointer",
                     }}
-                    key={generateKey(dbName)} //change key to something else at some point
+                    key={shortid.generate()}
                   >
-                    <DatabaseForDashboard
+                    {/* <DatabaseForDashboard
+                      databaseSelected={database}
+                      databaseRendering={dbName}
+                    /> */}
+                    <MemoedDatabases
                       databaseSelected={database}
                       databaseRendering={dbName}
                     />
@@ -154,7 +158,7 @@ const AllCluster = () => {
                       background: "transparent",
                       cursor: "pointer",
                     }}
-                    key={generateKey(versionPassed)} //change key to something else at some point
+                    key={shortid.generate()}
                   >
                     <DatabaseVersion
                       selectedVersion={version}

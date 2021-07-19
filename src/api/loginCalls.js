@@ -22,9 +22,9 @@ export const loginOauth = async (code) => {
       return e;
     }
   } else {
-    var res = {
+    var resp = {
       data: "No GitHub Code",
     };
-    return res;
+    return resp;
   }
 };
