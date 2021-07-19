@@ -1,12 +1,13 @@
 import React from "react";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+
 import "./db.css";
 
 const DatabaseForDashboard = (props) => {
   const dataBaseSelected = props.databaseSelected;
   const databaseRendering = props.databaseRendering;      
-  var imageLink="";
-
-  if(databaseRendering==="postgresql"){
+  var imageLink="";  
+  if(databaseRendering==="postgres"){
       imageLink="https://softwareengineeringdaily.com/wp-content/uploads/2016/10/PostgreSQL.png";
   }
   if(databaseRendering==="mysql"){
@@ -20,13 +21,23 @@ const DatabaseForDashboard = (props) => {
     if (databaseRendering === dataBaseSelected) {        
       return (
         <div className="databaseSelected">
-          <img src={imageLink} alt={databaseRendering} className="imageDb"></img>
+          <LazyLoadImage
+            alt={databaseRendering}
+            className="imageDb"
+            src={imageLink} // use normal <img> attributes as props
+          />          
+          {/* <img src={imageLink} alt={databaseRendering} className="imageDb"></img> */}
         </div>
       );
     } else {
       return(
         <div className="databaseRendered">
-        <img src={imageLink} alt={databaseRendering} className="imageDb"></img>
+          <LazyLoadImage
+            alt={databaseRendering}
+            className="imageDb"
+            src={imageLink} // use normal <img> attributes as props
+          />          
+        {/* <img src={imageLink} alt={databaseRendering} className="imageDb"></img> */}
         </div>
       );
     }

@@ -1,15 +1,10 @@
 import axios from "axios";
-// import { notification } from "antd";
 import { createNotification } from "../components/notifications/notify";
 
 export const handleOk = async (name, database, version) => {
   //console.log(name, database, version);
   if (name.length === 0) {
-    // Error Notification
-    // notification.error({
-    //   message: "Please enter a cluster name.",
-    //   description: "The cluster name is required.",
-    // });
+    // Error Notification    
     createNotification("error","Please enter a cluster name.");
     return 0;
   }
