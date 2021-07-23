@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { Spin } from "antd";
 
 import "./db.css";
 
 const DatabaseForDashboard = (props) => {
   const dataBaseSelected = props.databaseSelected;
   const databaseRendering = props.databaseRendering;      
+  const [loadingImage,setLoading]=useState(true);
+
   var imageLink="";  
   if(databaseRendering==="postgres"){
       imageLink="https://softwareengineeringdaily.com/wp-content/uploads/2016/10/PostgreSQL.png";
@@ -21,22 +24,24 @@ const DatabaseForDashboard = (props) => {
     if (databaseRendering === dataBaseSelected) {        
       return (
         <div className="databaseSelected">
-          <LazyLoadImage
+          {loadingImage ?<Spin/>:null}
+           <LazyLoadImage
             alt={databaseRendering}
-            className="imageDb"
-            effect="blur"
+            className="imageDb"            
             src={imageLink} // use normal <img> attributes as props
-          />                    
+            afterLoad={()=>setLoading(false)}          
+          />                     
         </div>
       );
     } else {
       return(
         <div className="databaseRendered">
+          {loadingImage ?<Spin/>:null}
           <LazyLoadImage
             alt={databaseRendering}
-            className="imageDb"
-            effect="blur"
+            className="imageDb"            
             src={imageLink} // use normal <img> attributes as props
+            afterLoad={()=>setLoading(false)}      
           />                  
         </div>
       );
