@@ -15,11 +15,15 @@ const config = {
 export const loginOauth = async (code) => {
   if (code) {
     try {
-      var res = await axios.post(loginUrlToken, { code: code }, config);
+      var res = await axios.post(loginUrlToken, { code: code }, config);      
       return res;
     } catch (e) {
       console.log(e);
-      return e;
+      var sendError={
+        status:"500",
+        message:"Server error!"
+      }
+      return sendError;
     }
   } else {
     var resp = {
