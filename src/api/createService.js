@@ -13,7 +13,7 @@ export const handleOk = async (name, database, version) => {
       `${process.env.REACT_APP_SERVER_URI}`,
       {
         UserID: JSON.parse(localStorage.getItem("details")).login,
-        db: { Type: database, Name: name },
+        Db: { Type: database, Name: name },
         version: version,
       },
       {
