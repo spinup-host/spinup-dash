@@ -1,27 +1,32 @@
 import React from "react";
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import PostgresLogo from '../../assets/images/PostgreSQL_logo.png'
+import MySqlLogo from '../../assets/images/MySQL_logo.png'
+import ectdLogo from '../../assets/images/etcd_logo.png'
 
-import 'react-lazy-load-image-component/src/effects/blur.css';
+import "react-lazy-load-image-component/src/effects/blur.css";
 import "./db.css";
 
 const DatabaseForDashboard = (props) => {
   const dataBaseSelected = props.databaseSelected;
-  const databaseRendering = props.databaseRendering;      
+  const databaseRendering = props.databaseRendering;
 
-  var postgresLink,mysqlLink,ectdLink;
-  var imageLink="";  
-  if(databaseRendering==="postgres"){
-      imageLink="https://softwareengineeringdaily.com/wp-content/uploads/2016/10/PostgreSQL.png";
-      postgresLink=imageLink;
+  var postgresLink, mysqlLink, ectdLink;
+  var imageLink = "";
+  
+  if (databaseRendering === "postgres") {
+    imageLink = PostgresLogo;
+    postgresLink = imageLink;
   }
-  if(databaseRendering==="mysql"){
-    imageLink="https://d1.awsstatic.com/asset-repository/products/amazon-rds/1024px-MySQL.ff87215b43fd7292af172e2a5d9b844217262571.png";
-    mysqlLink=imageLink;
+  if (databaseRendering === "mysql") {
+    imageLink = MySqlLogo;
+    mysqlLink = imageLink;
   }
-  if(databaseRendering==="ectd"){
-      imageLink="https://dbdb.io/media/logos/etcd.png";
-      ectdLink=imageLink;
-  }  
+  if (databaseRendering === "ectd") {
+    imageLink = ectdLogo;
+    ectdLink = imageLink;
+  }
+
   //checks if image has been cached
   function isCached(src) {
     var img = new Image();
@@ -29,43 +34,39 @@ const DatabaseForDashboard = (props) => {
     var complete = img.complete;
     img.src = "";
     return complete;
-}
+  }
 
-  const renderDb = () => {    
-    if (databaseRendering === dataBaseSelected) {        
+  const renderDb = () => {
+    if (databaseRendering === dataBaseSelected) {
       return (
-        <div className="databaseSelected">                            
-           <LazyLoadImage
+        <div className="databaseSelected">
+          <LazyLoadImage
             alt={databaseRendering}
             effect="blur"
-            className="imageDb"            
+            className="imageDb"
             src={imageLink} // use normal <img> attributes as props
-            threshold={120}                         
-            visibleByDefault={isCached(imageLink)}                            
-          />                     
+            threshold={120}
+            visibleByDefault={isCached(imageLink)}
+          />
         </div>
       );
     } else {
-      return(
-        <div className="databaseRendered">                                   
+      return (
+        <div className="databaseRendered">
           <LazyLoadImage
             alt={databaseRendering}
-            effect="blur"    
-            className="imageDb"     
-            threshold={120}   
-            src={imageLink} // use normal <img> attributes as props            
-            visibleByDefault={isCached(imageLink)}                               
-          />                  
+            effect="blur"
+            className="imageDb"
+            threshold={120}
+            src={imageLink} // use normal <img> attributes as props
+            visibleByDefault={isCached(imageLink)}
+          />
         </div>
       );
     }
   };
 
-  return (
-      <div>
-      {renderDb()}
-      </div>
-  );
+  return <div>{renderDb()}</div>;
 };
 
 export default DatabaseForDashboard;
