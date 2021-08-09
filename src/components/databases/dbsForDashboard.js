@@ -1,58 +1,72 @@
-import React, { useState } from "react";
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { Spin } from "antd";
+import React from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import PostgresLogo from '../../assets/images/PostgreSQL_logo.png'
+import MySqlLogo from '../../assets/images/MySQL_logo.png'
+import ectdLogo from '../../assets/images/etcd_logo.png'
 
+import "react-lazy-load-image-component/src/effects/blur.css";
 import "./db.css";
 
 const DatabaseForDashboard = (props) => {
   const dataBaseSelected = props.databaseSelected;
-  const databaseRendering = props.databaseRendering;      
-  const [loadingImage,setLoading]=useState(true);
+  const databaseRendering = props.databaseRendering;
 
-  var imageLink="";  
-  if(databaseRendering==="postgres"){
-      imageLink="https://softwareengineeringdaily.com/wp-content/uploads/2016/10/PostgreSQL.png";
+  var postgresLink, mysqlLink, ectdLink;
+  var imageLink = "";
+  
+  if (databaseRendering === "postgres") {
+    imageLink = PostgresLogo;
+    postgresLink = imageLink;
   }
-  if(databaseRendering==="mysql"){
-    imageLink="https://d1.awsstatic.com/asset-repository/products/amazon-rds/1024px-MySQL.ff87215b43fd7292af172e2a5d9b844217262571.png";
+  if (databaseRendering === "mysql") {
+    imageLink = MySqlLogo;
+    mysqlLink = imageLink;
   }
-  if(databaseRendering==="ectd"){
-      imageLink="https://dbdb.io/media/logos/etcd.png";
-  }  
+  if (databaseRendering === "ectd") {
+    imageLink = ectdLogo;
+    ectdLink = imageLink;
+  }
 
-  const renderDb = () => {    
-    if (databaseRendering === dataBaseSelected) {        
+  //checks if image has been cached
+  function isCached(src) {
+    var img = new Image();
+    img.src = src;
+    var complete = img.complete;
+    img.src = "";
+    return complete;
+  }
+
+  const renderDb = () => {
+    if (databaseRendering === dataBaseSelected) {
       return (
         <div className="databaseSelected">
-          {loadingImage ?<Spin/>:null}
-           <LazyLoadImage
+          <LazyLoadImage
             alt={databaseRendering}
-            className="imageDb"            
+            effect="blur"
+            className="imageDb"
             src={imageLink} // use normal <img> attributes as props
-            afterLoad={()=>setLoading(false)}          
-          />                     
+            threshold={120}
+            visibleByDefault={isCached(imageLink)}
+          />
         </div>
       );
     } else {
-      return(
+      return (
         <div className="databaseRendered">
-          {loadingImage ?<Spin/>:null}
           <LazyLoadImage
             alt={databaseRendering}
-            className="imageDb"            
+            effect="blur"
+            className="imageDb"
+            threshold={120}
             src={imageLink} // use normal <img> attributes as props
-            afterLoad={()=>setLoading(false)}      
-          />                  
+            visibleByDefault={isCached(imageLink)}
+          />
         </div>
       );
     }
   };
 
-  return (
-      <div>
-      {renderDb()}
-      </div>
-  );
+  return <div>{renderDb()}</div>;
 };
 
 export default DatabaseForDashboard;
