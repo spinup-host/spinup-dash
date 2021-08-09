@@ -53,6 +53,13 @@ cd spinup-dash && npm start
 cd OauthBackend && node index.js
 ```
 
+- To use the Docker image
+
+```sh
+docker build -t spinup .
+docker run -itd -p 3000:3000 -v /home/src/app/node_modules -v $(pwd):/home/src/app spinup:latest
+```
+
 ## Authors
 
 👤 **Rajat Maheshwari, Hiten Sharma**
