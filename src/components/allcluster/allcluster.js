@@ -35,7 +35,6 @@ const AllCluster = () => {
     localStorage.setItem("port", answer.data.Port);
     localStorage.setItem("containerid", answer.data.ContainerID);
     window.location.href = `https://app.spinup.host/dashboard/${answer.data.ContainerID}`;
-    window.location.reload();
   };
 
   const handleCancel = () => {
