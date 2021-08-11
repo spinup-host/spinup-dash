@@ -25,9 +25,9 @@ const selectedElement = {
 };
 
 const ClusterDetails = () => {
-  const [host, setHost] = useState("hktfgjaymvppxurjixty.spinup.host");
+  const [host, setHost] = useState(localStorage.getItem("hostname"));
   const [database, setDatabase] = useState("postgres");
-  const [port, setPort] = useState(5432);
+  const [port, setPort] = useState(localStorage.getItem("port"));
   const [username, setUsername] = useState("johndoe");
   const [passwordChanging, setPasswordChanging] = useState("");
   const [realPassword, setRealPassword] = useState("johndoe");

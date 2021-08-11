@@ -30,6 +30,11 @@ const AllCluster = () => {
     setName("");
     setVersion(13);
     setDatabase("postgresql");
+    localStorage.setItem("hostname", answer.HostName);
+    localStorage.setItem("port", answer.Port);
+    localStorage.setItem("containerid", answer.ContainerID);
+    window.location.href = `https://app.spinup.host/dashboard/${answer.ContainerID}`;
+    window.location.reload();
   };
 
   const handleCancel = () => {
@@ -102,6 +107,7 @@ const AllCluster = () => {
           >
             <p style={{ color: "#738095" }}>Name your Cluster</p>
             <Input
+              defaultValue={name}
               bordered={false}
               className="cluster-name"
               size="large"
