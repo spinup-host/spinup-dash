@@ -30,9 +30,10 @@ const AllCluster = () => {
     setName("");
     setVersion(13);
     setDatabase("postgresql");
-    localStorage.setItem("hostname", answer.HostName);
-    localStorage.setItem("port", answer.Port);
-    localStorage.setItem("containerid", answer.ContainerID);
+    console.log(answer);
+    localStorage.setItem("hostname", answer.data.HostName);
+    localStorage.setItem("port", answer.data.Port);
+    localStorage.setItem("containerid", answer.data.ContainerID);
     window.location.href = `https://app.spinup.host/dashboard/${answer.ContainerID}`;
     window.location.reload();
   };
