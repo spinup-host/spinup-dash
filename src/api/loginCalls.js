@@ -17,8 +17,7 @@ export const loginOauth = async (code) => {
     try {
       var res = await axios.post(loginUrlToken, { code: code }, config);      
       return res;
-    } catch (e) {
-      console.log(e);
+    } catch (e) {      
       var sendError={
         status:"500",
         message:"Server error!"

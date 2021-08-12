@@ -1,6 +1,7 @@
 import React from "react";
 import { Col, Row, Modal, Input, Button, Divider } from "antd";
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 import DatabaseForDashboard from "../databases/dbsForDashboard";
 import DatabaseVersion from "../dbVersions/dbversions";
 import { handleOk } from "../../api/createService";
@@ -8,10 +9,12 @@ import NotificationContainer from "../notifications/container";
 import shortid from "shortid";
 //css
 import "./allcluster.css";
+import { createNotification } from "../notifications/notify";
 
 const MemoedDatabases = React.memo(DatabaseForDashboard);
 
 const AllCluster = () => {
+  let history = useHistory();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [name, setName] = useState("");
   const [database, setDatabase] = useState("postgres");
@@ -25,6 +28,7 @@ const AllCluster = () => {
   const handleFinish = async () => {
     setIsModalVisible(false);
     // console.log(name, database, version);
+    createNotification("success","Redirecting!");
     var answer = await handleOk(name, database, version);
     setIsModalVisible(false);
     setName("");
@@ -34,7 +38,8 @@ const AllCluster = () => {
     localStorage.setItem("hostname", answer.data.HostName);
     localStorage.setItem("port", answer.data.Port);
     localStorage.setItem("containerid", answer.data.ContainerID);
-    window.location.href = `https://app.spinup.host/dashboard/${answer.data.ContainerID}`;
+    // window.location.href = `https://app.spinup.host/dashboard/${answer.data.ContainerID}`;
+    history.push(`/dashboard/${answer.data.ContainerID}`)
   };
 
   const handleCancel = () => {
