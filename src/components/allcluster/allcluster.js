@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Col, Row, Modal, Input, Button, Divider } from "antd";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import DatabaseForDashboard from "../databases/dbsForDashboard";
 import DatabaseVersion from "../dbVersions/dbversions";
 import { handleOk } from "../../api/createService";
+import { getClusters } from "../../api/listCluster";
 import NotificationContainer from "../notifications/container";
 import shortid from "shortid";
 //css
@@ -21,6 +22,50 @@ const AllCluster = () => {
   const [version, setVersion] = useState(13);
   const allDbs = ["postgres", "mysql", "ectd"];
   const allVersions = [13, 12, 11, 10];
+  const [myClusters,setMyClusters]=useState([]);
+
+  //useEffects here------------
+
+  useEffect(()=>{
+    async function fetchMyClusters(){
+      var res = await getClusters();
+      setMyClusters(res.data);
+    }
+    fetchMyClusters();
+  },[]);
+  
+  //useEffects ending here -------------
+
+  //functions here-----------
+
+  const listMyclusters = () =>{
+    //idk y i did this but i did it and its gonna stay this way for a while
+    if(myClusters.length>0)
+    {
+      return myClusters.map((cluster) => {
+        return (
+          <Col style={{margin:"1em"}}>
+              <div
+                // onClick={showModal}                
+                style={{
+                  borderRadius: "5px",
+                  width: "200px",
+                  height: "100px",
+                  backgroundColor: "#394150",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  cursor: "pointer",
+                }}
+              >
+                <h2 style={{ color: "white" }}>{cluster.Name}</h2>
+              </div>
+            </Col>  
+        )
+      })
+    }
+  }
+
   const showModal = () => {
     setIsModalVisible(true);
   };
@@ -34,7 +79,7 @@ const AllCluster = () => {
     setName("");
     setVersion(13);
     setDatabase("postgresql");
-    console.log(answer.data);
+    // console.log(answer.data);
     localStorage.setItem("hostname", answer.data.HostName);
     localStorage.setItem("port", answer.data.Port);
     localStorage.setItem("containerid", answer.data.ContainerID);
@@ -53,6 +98,8 @@ const AllCluster = () => {
     setName(e.target.value);
   };
 
+  //functions ending here-----------
+
   return (
     <>
       <Row style={{ marginTop: "3%", color: "white" }}>
@@ -64,21 +111,28 @@ const AllCluster = () => {
             </h2>
             <p>All your clusters will be listed here.</p>
           </div>
-          <div
-            onClick={showModal}
-            style={{
-              borderRadius: "5px",
-              width: "200px",
-              height: "100px",
-              backgroundColor: "#394150",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              cursor: "pointer",
-            }}
-          >
-            <h2 style={{ color: "white" }}>Add new</h2>
-          </div>
+          {/* Listing Clusters here! */}
+          <Row>
+            <Col style={{margin:"1em"}}>
+              <div
+                onClick={showModal}
+                style={{
+                  borderRadius: "5px",
+                  width: "200px",
+                  height: "100px",
+                  backgroundColor: "#394150",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  cursor: "pointer",
+                }}
+              >
+                <h2 style={{ color: "white" }}>Add new</h2>
+              </div>
+            </Col>    
+            {/* Now we list the user clusters*/}
+            {listMyclusters()}
+          </Row>
           <Modal
             bodyStyle={{ backgroundColor: "#212936" }}
             visible={isModalVisible}
