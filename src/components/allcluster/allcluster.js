@@ -7,6 +7,7 @@ import DatabaseVersion from "../dbVersions/dbversions";
 import { handleOk } from "../../api/createService";
 import { getClusters } from "../../api/listCluster";
 import NotificationContainer from "../notifications/container";
+import PacmanLoader from "react-spinners/PacmanLoader";
 import shortid from "shortid";
 //css
 import "./allcluster.css";
@@ -23,6 +24,7 @@ const AllCluster = () => {
   const allDbs = ["postgres", "mysql", "ectd"];
   const allVersions = [13, 12, 11, 10];
   const [myClusters,setMyClusters]=useState([]);
+  const [loadingClusters,setLoadingClusters]=useState(true);
 
   //useEffects here------------
 
@@ -30,6 +32,7 @@ const AllCluster = () => {
     async function fetchMyClusters(){
       var res = await getClusters();
       setMyClusters(res.data);
+      setLoadingClusters(false);
     }
     fetchMyClusters();
   },[]);
@@ -38,7 +41,7 @@ const AllCluster = () => {
 
   //functions here-----------
 
-  const listMyclusters = () =>{
+  const listMyclusters = () =>{    
     //idk y i did this but i did it and its gonna stay this way for a while
     if(myClusters.length>0)
     {
@@ -130,6 +133,25 @@ const AllCluster = () => {
                 <h2 style={{ color: "white" }}>Add new</h2>
               </div>
             </Col>    
+            {/* ----Loading clusters animation---- */}
+            {loadingClusters ? (
+              <Col style={{margin:"1em"}}>            
+              <div                
+                  style={{                  
+                    borderRadius: "5px",
+                    width: "200px",
+                    height: "100px",                    
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",       
+                    flexDirection:"column"           
+                  }}
+                >
+                  <PacmanLoader color="white" loading={loadingClusters} size={25}/>
+                  <p style={{ color: "white" ,marginTop:"2.5em" }}>Loading Clusters</p>                
+                </div>
+                </Col>
+            ) :null}
             {/* Now we list the user clusters*/}
             {listMyclusters()}
           </Row>

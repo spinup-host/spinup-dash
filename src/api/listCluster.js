@@ -11,7 +11,7 @@ export const getClusters = async() =>{
                   JSON.parse(localStorage.getItem("details")).jwttoken
                 }`,
               }
-        });        
+        });               
         return response;
     }catch{
         createNotification("error", "Error in fetching your clusters!");
