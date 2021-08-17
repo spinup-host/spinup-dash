@@ -23,51 +23,51 @@ const AllCluster = () => {
   const [version, setVersion] = useState(13);
   const allDbs = ["postgres", "mysql", "ectd"];
   const allVersions = [13, 12, 11, 10];
-  const [myClusters,setMyClusters]=useState([]);
-  const [loadingClusters,setLoadingClusters]=useState(true);
+  const [myClusters, setMyClusters] = useState([]);
+  const [loadingClusters, setLoadingClusters] = useState(true);
 
   //useEffects here------------
 
-  useEffect(()=>{
-    async function fetchMyClusters(){
+  useEffect(() => {
+    async function fetchMyClusters() {
       var res = await getClusters();
+      console.log(res.data);
       setMyClusters(res.data);
       setLoadingClusters(false);
     }
     fetchMyClusters();
-  },[]);
-  
+  }, []);
+
   //useEffects ending here -------------
 
   //functions here-----------
 
-  const listMyclusters = () =>{    
+  const listMyclusters = () => {
     //idk y i did this but i did it and its gonna stay this way for a while
-    if(myClusters.length>0)
-    {
+    if (myClusters.length > 0) {
       return myClusters.map((cluster) => {
         return (
-          <Col style={{margin:"1em"}}>
-              <div
-                // onClick={showModal}                
-                style={{
-                  borderRadius: "5px",
-                  width: "200px",
-                  height: "100px",
-                  backgroundColor: "#394150",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  cursor: "pointer",
-                }}
-              >
-                <h2 style={{ color: "white" }}>{cluster.Name}</h2>
-              </div>
-            </Col>  
-        )
-      })
+          <Col style={{ margin: "1em" }}>
+            <div
+              // onClick={showModal}
+              style={{
+                borderRadius: "5px",
+                width: "200px",
+                height: "100px",
+                backgroundColor: "#394150",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                cursor: "pointer",
+              }}
+            >
+              <h2 style={{ color: "white" }}>{cluster.Name}</h2>
+            </div>
+          </Col>
+        );
+      });
     }
-  }
+  };
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -76,7 +76,7 @@ const AllCluster = () => {
   const handleFinish = async () => {
     setIsModalVisible(false);
     // console.log(name, database, version);
-    createNotification("success","Redirecting!");
+    createNotification("success", "Redirecting!");
     var answer = await handleOk(name, database, version);
     setIsModalVisible(false);
     setName("");
@@ -87,7 +87,7 @@ const AllCluster = () => {
     localStorage.setItem("port", answer.data.Port);
     localStorage.setItem("containerid", answer.data.ContainerID);
     // window.location.href = `https://app.spinup.host/dashboard/${answer.data.ContainerID}`;
-    history.push(`/dashboard/${answer.data.ContainerID}`)
+    history.push(`/dashboard/${answer.data.ContainerID}`);
   };
 
   const handleCancel = () => {
@@ -116,7 +116,7 @@ const AllCluster = () => {
           </div>
           {/* Listing Clusters here! */}
           <Row>
-            <Col style={{margin:"1em"}}>
+            <Col style={{ margin: "1em" }}>
               <div
                 onClick={showModal}
                 style={{
@@ -132,26 +132,32 @@ const AllCluster = () => {
               >
                 <h2 style={{ color: "white" }}>Add new</h2>
               </div>
-            </Col>    
+            </Col>
             {/* ----Loading clusters animation---- */}
             {loadingClusters ? (
-              <Col style={{margin:"1em"}}>            
-              <div                
-                  style={{                  
+              <Col style={{ margin: "1em" }}>
+                <div
+                  style={{
                     borderRadius: "5px",
                     width: "200px",
-                    height: "100px",                    
+                    height: "100px",
                     display: "flex",
                     justifyContent: "center",
-                    alignItems: "center",       
-                    flexDirection:"column"           
+                    alignItems: "center",
+                    flexDirection: "column",
                   }}
                 >
-                  <PacmanLoader color="white" loading={loadingClusters} size={25}/>
-                  <p style={{ color: "white" ,marginTop:"2.5em" }}>Loading Clusters</p>                
+                  <PacmanLoader
+                    color="white"
+                    loading={loadingClusters}
+                    size={25}
+                  />
+                  <p style={{ color: "white", marginTop: "2.5em" }}>
+                    Loading Clusters
+                  </p>
                 </div>
-                </Col>
-            ) :null}
+              </Col>
+            ) : null}
             {/* Now we list the user clusters*/}
             {listMyclusters()}
           </Row>
