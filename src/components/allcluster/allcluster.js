@@ -44,7 +44,7 @@ const AllCluster = () => {
 
   const listMyclusters = () => {
     //idk y i did this but i did it and its gonna stay this way for a while
-    if (myClusters.length > 0) {
+    if (myClusters && myClusters.length > 0) {
       return myClusters.map((cluster) => {
         return (
           <Col style={{ margin: "1em" }}>
