@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Col, Row, Button } from "antd";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Navbar from "../navbar/navbar";
 import { UserOutlined, HistoryOutlined } from "@ant-design/icons";
@@ -10,11 +10,12 @@ import Backup from "./backup";
 //css files
 import "./settings.css";
 import "antd/dist/antd.css";
+import { loggingIn } from "../../actions/logIn";
 
 const Settings = () => {
   var history = useHistory();
+  const dispatch=useDispatch();
   const [user, setUser] = useState(null);
-  
   const [showSetting,setShowSetting]=useState("profile");
 
   var userDetails = useSelector((state) => state.userLogs);
@@ -24,11 +25,13 @@ const Settings = () => {
     if (!userDetails.username && !localStorage.getItem("details")) {
       history.push("/");
     } else {
-      userDetails = JSON.parse(localStorage.getItem("details"));
-      // console.log(JSON.parse(localStorage.getItem("details")));
-      setUser(userDetails);
+      dispatch(loggingIn(JSON.parse(localStorage.getItem("details"))));          
     }
   }, []);
+
+  useEffect(()=>{
+    setUser(userDetails);
+  },[userDetails]);
 
   return (
     <>

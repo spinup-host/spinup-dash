@@ -1,24 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { Col, Row, Input, Avatar } from "antd";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 //css
 import "./profile.css";
+import { loggingIn } from "../../actions/logIn";
 
 const Profile = () => {
   var history = useHistory();
+  const dispatch=useDispatch();
   var userDetails = useSelector((state) => state.userLogs);
   const [user, setUser] = useState(null);
 
   useEffect(() => {
     if (!userDetails.username && !localStorage.getItem("details")) {
       history.push("/");
-    } else {
-      userDetails = JSON.parse(localStorage.getItem("details"));
-      setUser(userDetails);
+    } else {      
+      dispatch(loggingIn(JSON.parse(localStorage.getItem("details"))));      
     }
   }, []);
+  
+  useEffect(()=>{
+    setUser(userDetails);
+  },[userDetails]);
+
   return (
     <>
       {user && (
