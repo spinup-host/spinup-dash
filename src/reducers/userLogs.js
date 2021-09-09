@@ -2,7 +2,7 @@ const INITIAL_USER = {
   username: null,
   name: null,
   token: null,
-  avatarUrl: null,
+  avatar_url: null,
 };
 
 export const userLogs = (state = INITIAL_USER, action = null) => {
@@ -13,7 +13,7 @@ export const userLogs = (state = INITIAL_USER, action = null) => {
         username: action.payload.username,
         name: action.payload.name,
         token: action.payload.token,
-        avatarUrl: action.payload.avatarUrl,
+        avatar_url: action.payload.avatar_url,
       };
     case "LOGGING_OUT":
       return {
@@ -21,7 +21,7 @@ export const userLogs = (state = INITIAL_USER, action = null) => {
         username: null,
         name: null,
         token: null,
-        avatarUrl: null,
+        avatar_url: null,
       };
   }
   return state;

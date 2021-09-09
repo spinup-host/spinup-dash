@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Col, Row, Input, Avatar } from "antd";
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 //css
@@ -9,21 +9,21 @@ import { loggingIn } from "../../actions/logIn";
 
 const Profile = () => {
   var history = useHistory();
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
   var userDetails = useSelector((state) => state.userLogs);
   const [user, setUser] = useState(null);
 
   useEffect(() => {
     if (!userDetails.username && !localStorage.getItem("details")) {
       history.push("/");
-    } else {      
-      dispatch(loggingIn(JSON.parse(localStorage.getItem("details"))));      
+    } else {
+      dispatch(loggingIn(JSON.parse(localStorage.getItem("details"))));
     }
   }, []);
-  
-  useEffect(()=>{
+
+  useEffect(() => {
     setUser(userDetails);
-  },[userDetails]);
+  }, [userDetails]);
 
   return (
     <>
@@ -33,7 +33,7 @@ const Profile = () => {
             <Row>
               <Avatar
                 shape="square"
-                src={user.avatarUrl}
+                src={user.avatar_url}
                 className="avatarImage"
                 alt="Github User Pic"
               />
