@@ -1,7 +1,7 @@
 import axios from "axios";
 import { createNotification } from "../components/notifications/notify";
 
-export const handleOk = async (name, database, version) => {
+export const handleOk = async (name, database, version, username, password) => {
   //console.log(name, database, version);
   if (name.length === 0) {
     // Error Notification
@@ -13,7 +13,12 @@ export const handleOk = async (name, database, version) => {
       `${process.env.REACT_APP_SERVER_URI}`,
       {
         UserID: JSON.parse(localStorage.getItem("details")).login,
-        Db: { Type: database, Name: name },
+        Db: {
+          Type: database,
+          Name: name,
+          username: username,
+          password: password,
+        },
         version: version,
       },
       {
