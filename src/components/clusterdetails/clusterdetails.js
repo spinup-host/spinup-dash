@@ -28,9 +28,9 @@ const ClusterDetails = () => {
   const [host, setHost] = useState(localStorage.getItem("hostname"));
   const [database, setDatabase] = useState("postgres");
   const [port, setPort] = useState(localStorage.getItem("port"));
-  const [username, setUsername] = useState("johndoe");
+  const [username, setUsername] = useState(localStorage.getItem("username"));
   const [passwordChanging, setPasswordChanging] = useState("");
-  const [realPassword, setRealPassword] = useState("johndoe");
+  const [realPassword, setRealPassword] = useState(localStorage.getItem("password")); 
   const [confirm, setConfirm] = useState("");
   const [changePasswordMode, setChangePasswordMode] = useState(false);
 
