@@ -19,6 +19,8 @@ const AllCluster = () => {
   let history = useHistory();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [name, setName] = useState("");
+  const [username,setUsername] = useState("")
+  const [password,setPassword] = useState("")
   const [database, setDatabase] = useState("postgres");
   const [version, setVersion] = useState(13);
   const allDbs = ["postgres", "mysql", "ectd"];
@@ -77,7 +79,7 @@ const AllCluster = () => {
     setIsModalVisible(false);
     // console.log(name, database, version);
     createNotification("success", "Redirecting!");
-    var answer = await handleOk(name, database, version);
+    var answer = await handleOk(name, database, version,username,password);
     setIsModalVisible(false);
     setName("");
     setVersion(13);
@@ -86,6 +88,8 @@ const AllCluster = () => {
     localStorage.setItem("hostname", answer.data.HostName);
     localStorage.setItem("port", answer.data.Port);
     localStorage.setItem("containerid", answer.data.ContainerID);
+    localStorage.setItem("username",username);
+    localStorage.setItem("password",password);
     // window.location.href = `https://app.spinup.host/dashboard/${answer.data.ContainerID}`;
     history.push(`/dashboard/${answer.data.ContainerID}`);
   };
@@ -265,6 +269,49 @@ const AllCluster = () => {
                 );
               })}
             </Row>
+            <br/>
+            <br/>
+            <p style={{ color: "#738095" }}>Enter Username:</p>
+            <Input
+              bordered={false}
+              className="cluster-username"
+              size="large"
+              placeholder="Database Username"
+              onChange={(e)=> setUsername(e.target.value)}
+              style={{
+                outline: "none",
+                backgroundColor: "#212936",
+                color: "white",
+                margin: "0",
+                padding: "0",
+                borderTop: "0px",
+                borderLeft: "0px",
+                borderRight: "0px",
+                borderBottomColor: "#5cfff3",
+              }}
+            />
+            <br/>
+            <br/>
+            <p style={{ color: "#738095" }}>Enter Password:</p>
+            <Input
+              bordered={false}
+              type="password"
+              className="cluster-password"
+              size="large"
+              placeholder="Database Password"
+              onChange={(e)=> setPassword(e.target.value)}
+              style={{
+                outline: "none",
+                backgroundColor: "#212936",
+                color: "white",
+                margin: "0",
+                padding: "0",
+                borderTop: "0px",
+                borderLeft: "0px",
+                borderRight: "0px",
+                borderBottomColor: "#5cfff3",
+              }}
+            />
             <Divider />
           </Modal>
         </Col>
