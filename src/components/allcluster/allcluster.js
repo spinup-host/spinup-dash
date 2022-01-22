@@ -63,7 +63,7 @@ const AllCluster = () => {
                 cursor: "pointer",
               }}
             >
-              <h2 style={{ color: "white" }}>{cluster.Name}</h2>
+              <h2 style={{ color: "white" }}>{cluster.name}</h2>
             </div>
           </Col>
         );

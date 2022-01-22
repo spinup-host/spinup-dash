@@ -18,7 +18,10 @@ https://github.com/settings/developers
 - In the .env file, add the following environment variable
 
 ```sh
-REACT_APP_URL = https://github.com/login/oauth/authorize?client_id=<YOUR_CLIENT_ID>&redirect_uri=http://localhost:3000/login
+REACT_APP_CLIENT_ID=4b2f989781687e3b6dc1
+REACT_APP_REDIRECT_URI=http://localhost:3001/login
+REACT_APP_SERVER_URI=http://localhost:4434 # URL of the spinup API server
+REACT_APP_GITHUB_SERVER=http://localhost:4434/githubAuth
 ```
 
 - You also need to setup environment variables in the backend folder
