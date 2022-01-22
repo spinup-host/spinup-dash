@@ -10,7 +10,7 @@ export const handleOk = async (name, database, version, username, password) => {
   }
   try {
     var response = await axios.post(
-      `${process.env.REACT_APP_SERVER_URI}`,
+      `${process.env.REACT_APP_SERVER_URI}/createservice`,
       {
         UserID: JSON.parse(localStorage.getItem("details")).login,
         Db: {
