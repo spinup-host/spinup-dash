@@ -5,7 +5,7 @@ import axios from "axios";
 
 const loginUrlToken = process.env.REACT_APP_GITHUB_SERVER;
 // const loginUrlToken=tempPortForLoginLocal;
-
+const altAuthUrl = `${process.env.REACT_APP_SERVER_URI}/altauth`
 const config = {
   headers: {
     "Content-type": "application/json",
@@ -31,3 +31,27 @@ export const loginOauth = async (code) => {
     return resp;
   }
 };
+
+export const loginAlt = async(apikey) => {
+  if(apikey){
+    try {
+      axios.defaults.headers.common = {
+        "x-api-key": `${apikey}`
+      }
+      let res = await axios.post(altAuthUrl)
+      return res
+    } catch(e){
+        let sendError = {
+          status: "500",
+          message: "Server error!"
+        }
+        return sendError
+    }
+  } else{
+    let resp = {
+      data: "No Api Key",
+
+    };
+    return resp;
+  }
+}

@@ -9,6 +9,9 @@ export const handleOk = async (name, database, version, username, password) => {
     return 0;
   }
   try {
+    axios.defaults.headers.common = {
+      "x-api-key": JSON.parse(localStorage.getItem("details")).apikey
+    }
     var response = await axios.post(
       `${process.env.REACT_APP_SERVER_URI}/createservice`,
       {
