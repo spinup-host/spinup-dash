@@ -18,7 +18,7 @@
 
 .Rectangle {
   width: 30em;
-  height: 22em;
+  height: 25em;
   flex-grow: 0;
   padding: 36px 41px 48px 47px;
   border-radius: 10px;
