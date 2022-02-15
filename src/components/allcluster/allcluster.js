@@ -105,6 +105,9 @@ const AllCluster = () => {
     setName(e.target.value);
   };
 
+  const handleVersion = (e) => {
+    setVersion(e.target.value)
+  }
   //functions ending here-----------
 
   return (
@@ -248,26 +251,18 @@ const AllCluster = () => {
             <br />
             <p style={{ color: "#738095" }}>Choose Version</p>
             <Row justify="start">
-              {allVersions.map((versionPassed) => {
-                return (
-                  <Col span={4}>
-                    <button
-                      onClick={() => setVersion(versionPassed)}
-                      style={{
-                        border: "0px solid transparent",
-                        background: "transparent",
-                        cursor: "pointer",
-                      }}
-                      key={shortid.generate()}
-                    >
-                      <DatabaseVersion
-                        selectedVersion={version}
-                        currVersion={versionPassed}
-                      />
-                    </button>
-                  </Col>
-                );
-              })}
+            <select value={version} onChange={handleVersion}>
+                <option value="10">10</option>
+                <option value="10.20">10.20</option>
+                <option value="11">11</option>
+                <option value="11.15">11.15</option>
+                <option value="12">12</option>
+                <option value="12.10">12.10</option>
+                <option value="13">13</option>
+                <option value="13.6">13.6</option>
+                <option value="14">14</option>
+                <option value="14.2">14.2</option>
+            </select>
             </Row>
             <br/>
             <br/>

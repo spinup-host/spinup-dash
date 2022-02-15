@@ -8,10 +8,15 @@ export const handleOk = async (name, database, version, username, password) => {
     createNotification("error", "Please enter a cluster name.");
     return 0;
   }
+  var maj_ver = version.split(".")[0];
+  var min_ver = "0"
+  if (version.includes(".")) {
+    min_ver = version.split(".")[1];
+  }
   try {
     axios.defaults.headers.common = {
-      "x-api-key": JSON.parse(localStorage.getItem("details")).apikey
-    }
+      "x-api-key": JSON.parse(localStorage.getItem("details")).apikey,
+    };
     var response = await axios.post(
       `${process.env.REACT_APP_SERVER_URI}/createservice`,
       {
@@ -22,7 +27,10 @@ export const handleOk = async (name, database, version, username, password) => {
           username: username,
           password: password,
         },
-        version: version,
+        version: {
+          maj: parseInt(maj_ver),
+          min: parseInt(min_ver)
+        }
       },
       {
         headers: {
@@ -34,7 +42,6 @@ export const handleOk = async (name, database, version, username, password) => {
     );
     return response;
   } catch (e) {
-    console.log(e);
     return e;
   }
 };
