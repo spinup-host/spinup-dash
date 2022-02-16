@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import axios from "axios";
 import { Col, Row, Modal, Input, Button, Divider } from "antd";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
@@ -22,7 +23,7 @@ const AllCluster = () => {
   const [username,setUsername] = useState("")
   const [password,setPassword] = useState("")
   const [database, setDatabase] = useState("postgres");
-  const [version, setVersion] = useState(13);
+  const [version, setVersion] = useState("13");
   const allDbs = ["postgres", "mysql", "ectd"];
   const allVersions = [13, 12, 11, 10];
   const [myClusters, setMyClusters] = useState([]);
@@ -33,7 +34,7 @@ const AllCluster = () => {
   useEffect(() => {
     async function fetchMyClusters() {
       var res = await getClusters();
-      console.log(res.data);
+      //console.log(res.data);
       setMyClusters(res.data);
       setLoadingClusters(false);
     }
@@ -43,13 +44,23 @@ const AllCluster = () => {
   //useEffects ending here -------------
 
   //functions here-----------
+  const getclusterid = async (clustername) => {
+    let response = await axios.get(`${process.env.REACT_APP_SERVER_URI}/listcluster`)
+    return response.data.filter((clusterobj)=> clusterobj.name === clustername)[0].cluster_id
+  }
 
+  const handleCluster = async (clustername) => {
+    let clusterid = await getclusterid(clustername);
+    history.push(`/dashboard/${clusterid}`)
+  }
+
+  
   const listMyclusters = () => {
     //idk y i did this but i did it and its gonna stay this way for a while
     if (myClusters && myClusters.length > 0) {
       return myClusters.map((cluster) => {
         return (
-          <Col style={{ margin: "1em" }}>
+          <Col style={{ margin: "1em" }} onClick={()=>handleCluster(cluster.name)}>
             <div
               // onClick={showModal}
               style={{
@@ -82,7 +93,7 @@ const AllCluster = () => {
     var answer = await handleOk(name, database, version,username,password);
     setIsModalVisible(false);
     setName("");
-    setVersion(13);
+    setVersion("13");
     setDatabase("postgresql");
     // console.log(answer.data);
     localStorage.setItem("hostname", answer.data.HostName);
@@ -96,7 +107,7 @@ const AllCluster = () => {
 
   const handleCancel = () => {
     setName("");
-    setVersion(13);
+    setVersion("13");
     setDatabase("postgresql");
     setIsModalVisible(false);
   };
