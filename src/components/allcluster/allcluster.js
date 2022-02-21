@@ -51,6 +51,7 @@ const AllCluster = () => {
 
   const handleCluster = async (clustername) => {
     let clusterid = await getclusterid(clustername);
+    localStorage.setItem("currdbname",clustername);
     history.push(`/dashboard/${clusterid}`)
   }
 
