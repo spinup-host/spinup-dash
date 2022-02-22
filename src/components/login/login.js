@@ -9,6 +9,7 @@ import HashLoader from "react-spinners/HashLoader";
 import NotificationContainer from "../notifications/container";
 import { createNotification } from "../notifications/notify";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import usericon from "../../assets/images/usericon2.png"
 
 import "./login.css";
 const override = css`
@@ -45,7 +46,7 @@ const Login = () => {
    }
    if (res.status && res.status === 200 && res.data !== "No GitHub Code"){
     const userdetails = {
-    avatar_url: "",
+    avatar_url: usericon,
     jwttoken: "",
     login: "testuser",
     name: "testuser",
