@@ -1,8 +1,8 @@
 import React from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import PostgresLogo from '../../assets/images/PostgreSQL_logo.png'
-import MySqlLogo from '../../assets/images/MySQL_logo.png'
-import ectdLogo from '../../assets/images/etcd_logo.png'
+import PostgresLogo from "../../assets/images/PostgreSQL_logo.png";
+import MySqlLogo from "../../assets/images/MySQL_logo.png";
+import ectdLogo from "../../assets/images/etcd_logo.png";
 
 import "react-lazy-load-image-component/src/effects/blur.css";
 import "./db.css";
@@ -13,7 +13,7 @@ const DatabaseForDashboard = (props) => {
 
   var postgresLink, mysqlLink, ectdLink;
   var imageLink = "";
-  
+
   if (databaseRendering === "postgres") {
     imageLink = PostgresLogo;
     postgresLink = imageLink;

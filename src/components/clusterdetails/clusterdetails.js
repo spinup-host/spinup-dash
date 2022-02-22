@@ -26,7 +26,7 @@ const selectedElement = {
 };
 
 const ClusterDetails = () => {
-  let history = useHistory()
+  let history = useHistory();
   const [host, setHost] = useState(localStorage.getItem("hostname"));
   const [database, setDatabase] = useState("postgres");
   const [port, setPort] = useState(localStorage.getItem("port"));
@@ -39,7 +39,7 @@ const ClusterDetails = () => {
   const [changePasswordMode, setChangePasswordMode] = useState(false);
   const [isBackup, setIsBackup] = useState(true);
   const handleBackup = () => {
-    history.push("/backup")  
+    history.push("/backup");
   };
   return (
     <>
@@ -152,8 +152,7 @@ const ClusterDetails = () => {
             onClick={handleBackup}
           >
             <h3>
-              <b style={{ color: "white" ,
-                marginLeft: "20px"}}>
+              <b style={{ color: "white", marginLeft: "20px" }}>
                 <SettingOutlined /> Backup
               </b>
             </h3>

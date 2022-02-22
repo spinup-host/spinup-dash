@@ -1,21 +1,21 @@
-.settingsTitle{
+.settingsTitle {
   /* font-family: SFProText; */
-  font-size: 2em;  
+  font-size: 2em;
   font-stretch: normal;
   font-style: normal;
   line-height: normal;
-  letter-spacing: normal;  
+  letter-spacing: normal;
   color: #ffffff;
 }
 
-.settingsButton{
+.settingsButton {
   padding: 7px 128px 30px 9px;
   background-color: #283141;
   border: 0px;
 }
 
-.backupButton{
-    padding: 7px 122px 30px 9px;
-    background-color: #283141;
-    border: 0px;
+.backupButton {
+  padding: 7px 122px 30px 9px;
+  background-color: #283141;
+  border: 0px;
 }

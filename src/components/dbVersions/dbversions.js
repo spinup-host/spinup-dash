@@ -13,11 +13,7 @@ const DatabaseVersion = (props) => {
     }
   };
 
-  return (
-    <div>
-      {renderVersions()}
-    </div>
-  );
+  return <div>{renderVersions()}</div>;
 };
 
 export default DatabaseVersion;

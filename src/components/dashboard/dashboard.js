@@ -4,12 +4,12 @@ import { useHistory } from "react-router-dom";
 import Navbar from "../navbar/navbar";
 import AllCluster from "../allcluster/allcluster";
 
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { loggingIn } from "../../actions/logIn";
 
 const Dashboard = () => {
   var history = useHistory();
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
   var userDetails = useSelector((state) => state.userLogs);
 
   const [user, setUser] = useState(null);
@@ -18,13 +18,13 @@ const Dashboard = () => {
     if (!userDetails.username && !localStorage.getItem("details")) {
       history.push("/login");
     } else {
-      dispatch(loggingIn(JSON.parse(localStorage.getItem("details"))));            
+      dispatch(loggingIn(JSON.parse(localStorage.getItem("details"))));
     }
   }, []);
 
-  useEffect(()=>{
+  useEffect(() => {
     setUser(userDetails);
-  },[userDetails]);
+  }, [userDetails]);
 
   return (
     <>

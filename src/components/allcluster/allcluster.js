@@ -20,8 +20,8 @@ const AllCluster = () => {
   let history = useHistory();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [name, setName] = useState("");
-  const [username,setUsername] = useState("")
-  const [password,setPassword] = useState("")
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [database, setDatabase] = useState("postgres");
   const [version, setVersion] = useState("13");
   const allDbs = ["postgres", "mysql", "ectd"];
@@ -45,23 +45,29 @@ const AllCluster = () => {
 
   //functions here-----------
   const getclusterid = async (clustername) => {
-    let response = await axios.get(`${process.env.REACT_APP_SERVER_URI}/listcluster`)
-    return response.data.filter((clusterobj)=> clusterobj.name === clustername)[0].cluster_id
-  }
+    let response = await axios.get(
+      `${process.env.REACT_APP_SERVER_URI}/listcluster`
+    );
+    return response.data.filter(
+      (clusterobj) => clusterobj.name === clustername
+    )[0].cluster_id;
+  };
 
   const handleCluster = async (clustername) => {
     let clusterid = await getclusterid(clustername);
-    localStorage.setItem("currdbname",clustername);
-    history.push(`/dashboard/${clusterid}`)
-  }
+    localStorage.setItem("currdbname", clustername);
+    history.push(`/dashboard/${clusterid}`);
+  };
 
-  
   const listMyclusters = () => {
     //idk y i did this but i did it and its gonna stay this way for a while
     if (myClusters && myClusters.length > 0) {
       return myClusters.map((cluster) => {
         return (
-          <Col style={{ margin: "1em" }} onClick={()=>handleCluster(cluster.name)}>
+          <Col
+            style={{ margin: "1em" }}
+            onClick={() => handleCluster(cluster.name)}
+          >
             <div
               // onClick={showModal}
               style={{
@@ -91,7 +97,7 @@ const AllCluster = () => {
     setIsModalVisible(false);
     // console.log(name, database, version);
     createNotification("success", "Redirecting!");
-    var answer = await handleOk(name, database, version,username,password);
+    var answer = await handleOk(name, database, version, username, password);
     setIsModalVisible(false);
     setName("");
     setVersion("13");
@@ -100,8 +106,8 @@ const AllCluster = () => {
     localStorage.setItem("hostname", answer.data.HostName);
     localStorage.setItem("port", answer.data.Port);
     localStorage.setItem("containerid", answer.data.ContainerID);
-    localStorage.setItem("username",username);
-    localStorage.setItem("password",password);
+    localStorage.setItem("username", username);
+    localStorage.setItem("password", password);
     // window.location.href = `https://app.spinup.host/dashboard/${answer.data.ContainerID}`;
     history.push(`/dashboard/${answer.data.ContainerID}`);
   };
@@ -118,8 +124,8 @@ const AllCluster = () => {
   };
 
   const handleVersion = (e) => {
-    setVersion(e.target.value)
-  }
+    setVersion(e.target.value);
+  };
   //functions ending here-----------
 
   return (
@@ -263,7 +269,7 @@ const AllCluster = () => {
             <br />
             <p style={{ color: "#738095" }}>Choose Version</p>
             <Row justify="start">
-            <select value={version} onChange={handleVersion}>
+              <select value={version} onChange={handleVersion}>
                 <option value="10">10</option>
                 <option value="10.20">10.20</option>
                 <option value="11">11</option>
@@ -274,17 +280,17 @@ const AllCluster = () => {
                 <option value="13.6">13.6</option>
                 <option value="14">14</option>
                 <option value="14.2">14.2</option>
-            </select>
+              </select>
             </Row>
-            <br/>
-            <br/>
+            <br />
+            <br />
             <p style={{ color: "#738095" }}>Enter Username:</p>
             <Input
               bordered={false}
               className="cluster-username"
               size="large"
               placeholder="Database Username"
-              onChange={(e)=> setUsername(e.target.value)}
+              onChange={(e) => setUsername(e.target.value)}
               style={{
                 outline: "none",
                 backgroundColor: "#212936",
@@ -297,8 +303,8 @@ const AllCluster = () => {
                 borderBottomColor: "#5cfff3",
               }}
             />
-            <br/>
-            <br/>
+            <br />
+            <br />
             <p style={{ color: "#738095" }}>Enter Password:</p>
             <Input
               bordered={false}
@@ -306,7 +312,7 @@ const AllCluster = () => {
               className="cluster-password"
               size="large"
               placeholder="Database Password"
-              onChange={(e)=> setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
               style={{
                 outline: "none",
                 backgroundColor: "#212936",

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Col, Row, Button } from "antd";
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Navbar from "../navbar/navbar";
 import { UserOutlined, HistoryOutlined } from "@ant-design/icons";
@@ -14,9 +14,9 @@ import { loggingIn } from "../../actions/logIn";
 
 const Settings = () => {
   var history = useHistory();
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
   const [user, setUser] = useState(null);
-  const [showSetting,setShowSetting]=useState("profile");
+  const [showSetting, setShowSetting] = useState("profile");
 
   var userDetails = useSelector((state) => state.userLogs);
 
@@ -25,13 +25,13 @@ const Settings = () => {
     if (!userDetails.username && !localStorage.getItem("details")) {
       history.push("/");
     } else {
-      dispatch(loggingIn(JSON.parse(localStorage.getItem("details"))));          
+      dispatch(loggingIn(JSON.parse(localStorage.getItem("details"))));
     }
   }, []);
 
-  useEffect(()=>{
+  useEffect(() => {
     setUser(userDetails);
-  },[userDetails]);
+  }, [userDetails]);
 
   return (
     <>
@@ -64,7 +64,13 @@ const Settings = () => {
               sm={8}
               style={{ display: "flex" }}
             >
-              <Button className="settingsButton" type="primary" onClick={()=>{setShowSetting("profile")}}>
+              <Button
+                className="settingsButton"
+                type="primary"
+                onClick={() => {
+                  setShowSetting("profile");
+                }}
+              >
                 <UserOutlined style={{ color: "white" }} />
                 Profile
               </Button>
@@ -81,7 +87,13 @@ const Settings = () => {
               sm={8}
               style={{ display: "flex" }}
             >
-              <Button className="backupButton" type="primary" onClick={()=>{setShowSetting("backup")}}>
+              <Button
+                className="backupButton"
+                type="primary"
+                onClick={() => {
+                  setShowSetting("backup");
+                }}
+              >
                 <HistoryOutlined style={{ color: "white" }} />
                 Backup
               </Button>
@@ -90,7 +102,7 @@ const Settings = () => {
         </Col>
         {/* The Settings button bar */}
         <Col xxl={3} xl={3} lg={3} xs={2} md={3} sm={2} />
-        {showSetting === "profile" ? <Profile /> : <Backup />}        
+        {showSetting === "profile" ? <Profile /> : <Backup />}
       </Row>
     </>
   );
