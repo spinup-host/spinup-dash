@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import { Row, Col, Tag, Divider, Input, Card, Button } from "antd";
+import { useHistory } from "react-router-dom";
 
 import {
   CopyOutlined,
@@ -25,15 +26,21 @@ const selectedElement = {
 };
 
 const ClusterDetails = () => {
+  let history = useHistory();
   const [host, setHost] = useState(localStorage.getItem("hostname"));
   const [database, setDatabase] = useState("postgres");
   const [port, setPort] = useState(localStorage.getItem("port"));
   const [username, setUsername] = useState(localStorage.getItem("username"));
   const [passwordChanging, setPasswordChanging] = useState("");
-  const [realPassword, setRealPassword] = useState(localStorage.getItem("password")); 
+  const [realPassword, setRealPassword] = useState(
+    localStorage.getItem("password")
+  );
   const [confirm, setConfirm] = useState("");
   const [changePasswordMode, setChangePasswordMode] = useState(false);
-
+  const [isBackup, setIsBackup] = useState(true);
+  const handleBackup = () => {
+    history.push("/backup");
+  };
   return (
     <>
       <Row style={{ marginTop: "50px" }}>
@@ -134,6 +141,19 @@ const ClusterDetails = () => {
             <h3>
               <b style={selectedElement}>
                 <SettingOutlined /> Configurations
+              </b>
+            </h3>
+          </button>
+          <button
+            style={{
+              border: "0px solid transparent",
+              background: "transparent",
+            }}
+            onClick={handleBackup}
+          >
+            <h3>
+              <b style={{ color: "white", marginLeft: "20px" }}>
+                <SettingOutlined /> Backup
               </b>
             </h3>
           </button>

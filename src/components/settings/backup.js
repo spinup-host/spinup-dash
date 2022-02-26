@@ -90,12 +90,8 @@ const Backup = () => {
           </Row>
 
           <Row style={{ marginTop: "5vh" }}>
-          <Button className="saveChanges">
-              Save Changes
-          </Button>    
-          
-          </Row>          
-
+            <Button className="saveChanges">Save Changes</Button>
+          </Row>
         </Col>
       </Row>
     </>

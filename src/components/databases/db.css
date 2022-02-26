@@ -1,31 +1,31 @@
-.databaseSelected{
-    width: 150px;
-    height: 60px;
-    flex-grow: 0;
-    margin: 14px 8px 35px 0;
-    align-items: center;
-    padding: 5px 40px 1px 14px;
-    border-radius: 3px;
-    margin: 0 auto;
-    background-color: #c7d4e9;
-    text-align: center;
+.databaseSelected {
+  width: 150px;
+  height: 60px;
+  flex-grow: 0;
+  margin: 14px 8px 35px 0;
+  align-items: center;
+  padding: 5px 40px 1px 14px;
+  border-radius: 3px;
+  margin: 0 auto;
+  background-color: #c7d4e9;
+  text-align: center;
 }
 
-.databaseRendered{
-    width: 150px;
-    height: 60px;
-    flex-grow: 0;
-    margin: 14px 8px 35px 0;
-    align-items: center;
-    padding: 5px 40px 1px 14px;
-    border-radius: 3px;
-    margin: 0 auto;
-    opacity: 0.9;
-    background-color: #394150;
+.databaseRendered {
+  width: 150px;
+  height: 60px;
+  flex-grow: 0;
+  margin: 14px 8px 35px 0;
+  align-items: center;
+  padding: 5px 40px 1px 14px;
+  border-radius: 3px;
+  margin: 0 auto;
+  opacity: 0.9;
+  background-color: #394150;
 }
 
-.imageDb{    
-    width: 108.9px;
-    height: 50px;
-    flex-grow: 0;
+.imageDb {
+  width: 108.9px;
+  height: 50px;
+  flex-grow: 0;
 }

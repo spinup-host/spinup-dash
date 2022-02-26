@@ -4,7 +4,7 @@
   font-family: "Roboto", sans-serif;
 }
 
-.Background {  
+.Background {
   display: flex;
   width: 100%;
   justify-content: center;
@@ -24,7 +24,7 @@
   border-radius: 10px;
   background-color: #121826;
   text-align: center;
-  margin:  0 auto;  
+  margin: 0 auto;
 }
 
 .LogoStyle {

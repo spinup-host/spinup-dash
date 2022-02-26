@@ -9,7 +9,7 @@ export const handleOk = async (name, database, version, username, password) => {
     return 0;
   }
   var maj_ver = version.split(".")[0];
-  var min_ver = "0"
+  var min_ver = "0";
   if (version.includes(".")) {
     min_ver = version.split(".")[1];
   }
@@ -29,8 +29,8 @@ export const handleOk = async (name, database, version, username, password) => {
         },
         version: {
           maj: parseInt(maj_ver),
-          min: parseInt(min_ver)
-        }
+          min: parseInt(min_ver),
+        },
       },
       {
         headers: {
