@@ -10,6 +10,7 @@ import { getClusters } from "../../api/listCluster";
 import NotificationContainer from "../notifications/container";
 import PacmanLoader from "react-spinners/PacmanLoader";
 import shortid from "shortid";
+import { TailSpin } from "react-loader-spinner";
 //css
 import "./allcluster.css";
 import { createNotification } from "../notifications/notify";
@@ -28,7 +29,7 @@ const AllCluster = () => {
   const allVersions = [13, 12, 11, 10];
   const [myClusters, setMyClusters] = useState([]);
   const [loadingClusters, setLoadingClusters] = useState(true);
-
+  const [creatingCluster, setCreatingCluster] = useState(false);
   //useEffects here------------
 
   useEffect(() => {
@@ -94,10 +95,11 @@ const AllCluster = () => {
   };
 
   const handleFinish = async () => {
-    setIsModalVisible(false);
     // console.log(name, database, version);
     createNotification("success", "Redirecting!");
+    setCreatingCluster(true);
     var answer = await handleOk(name, database, version, username, password);
+    setCreatingCluster(false);
     setIsModalVisible(false);
     setName("");
     setVersion("13");
@@ -325,6 +327,30 @@ const AllCluster = () => {
                 borderBottomColor: "#5cfff3",
               }}
             />
+            {creatingCluster ? (
+              <Col style={{ margin: "1em" }}>
+                <div
+                  style={{
+                    borderRadius: "5px",
+                    width: "200px",
+                    height: "100px",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flexDirection: "column",
+                  }}
+                >
+                  <PacmanLoader
+                    color="white"
+                    loading={creatingCluster}
+                    size={25}
+                  />
+                  <p style={{ color: "white", marginTop: "2.5em" }}>
+                    Creating Cluster
+                  </p>
+                </div>
+              </Col>
+            ) : null}
             <Divider />
           </Modal>
         </Col>
