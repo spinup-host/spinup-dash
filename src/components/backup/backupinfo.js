@@ -5,9 +5,7 @@ import { CopyOutlined, SyncOutlined } from "@ant-design/icons";
 import NotificationContainer from "../notifications/container";
 import { createNotification } from "../notifications/notify";
 import Navbar from "../navbar/navbar";
-import { TailSpin } from "react-loader-spinner";
 
-//some css for selected and unselected buttons (config , databses and monitoring)
 const selectedElement = {
   color: "#738095",
   borderBottom: "3px solid #ff9580",

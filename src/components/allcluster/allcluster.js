@@ -10,8 +10,6 @@ import { getClusters } from "../../api/listCluster";
 import NotificationContainer from "../notifications/container";
 import PacmanLoader from "react-spinners/PacmanLoader";
 import shortid from "shortid";
-import { TailSpin } from "react-loader-spinner";
-//css
 import "./allcluster.css";
 import { createNotification } from "../notifications/notify";
 
