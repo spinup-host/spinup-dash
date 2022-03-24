@@ -48,7 +48,7 @@ const BackupInfo = () => {
     <>
       <Navbar />
       <Row style={{ marginTop: "50px" }}>
-        <Col xxl={3} xl={3} lg={3} xs={2} md={3} sm={2} />
+        <Col xxl={3} xl={3} lg={3} xs={2} md={2} sm={2} />
         <Col
           xxl={6}
           xl={6}
@@ -78,7 +78,7 @@ const BackupInfo = () => {
             <SyncOutlined /> Refresh
           </p>
         </Col>
-        <Col xxl={11} xl={11} lg={11} xs={9} md={9} sm={9}>
+        <Col xxl={12} xl={12} lg={12} xs={10} md={10} sm={10}>
           <Tag
             color="#2c383c"
             style={{ float: "right", borderRadius: "5px" }}
@@ -93,14 +93,14 @@ const BackupInfo = () => {
             </h2>
           </Tag>
         </Col>
-        <Col xxl={4} xl={4} lg={4} md={1} />
+        <Col xxl={3} xl={3} lg={3} xs={4} md={4} sm={4} />
       </Row>
       <Row style={{ marginTop: "20px" }}>
-        <Col xxl={3} xl={3} lg={3} xs={2} md={3} sm={2} />
+        <Col xxl={3} xl={3} lg={3} xs={2} md={2} sm={2} />
         <Col
-          xxl={17}
-          xl={17}
-          lg={17}
+          xxl={18}
+          xl={18}
+          lg={18}
           xs={20}
           md={20}
           sm={20}
@@ -117,12 +117,15 @@ const BackupInfo = () => {
             </h3>
           </button>
         </Col>
-        <Col xxl={4} xl={4} lg={4} xs={2} md={1} sm={2} />
+        <Col xxl={3} xl={3} lg={3} xs={2} md={2} sm={2} />
       </Row>
       <Divider style={{ backgroundColor: "#313b4d", marginTop: "-1px" }} />
       <Row>
-        <Col xxl={3} xl={3} lg={3} xs={2} md={3} sm={2} />
-        <Col xxl={9} xl={9} lg={9} xs={20} md={10} sm={20}>
+        <Col xxl={1} xl={1} lg={1} xs={1} md={1} sm={1} />
+        <Col xxl={16} xl={16} lg={16} xs={16} md={16} sm={16}>
+      <Row>
+        <Col xxl={3} xl={3} lg={3} xs={2} md={2} sm={2} />
+        <Col xxl={18} xl={18} lg={18} xs={20} md={20} sm={20}>
           <p style={{ color: "#738095" }}>Database Name</p>
           <Input
             bordered={false}
@@ -136,39 +139,11 @@ const BackupInfo = () => {
             disabled
           />
         </Col>
-        <Col xxl={4} xl={4} lg={4} />
-        <Col xxl={4} xl={4} lg={4} xs={20} md={10} sm={20}>
-          <Card
-            style={{
-              width: "308px",
-              backgroundColor: "#283141",
-              border: "none",
-            }}
-            headStyle={{
-              borderBottom: "none",
-            }}
-            title={
-              <p style={{ color: "#6abfaf" }}>
-                Connect to your cluster <br /> from anywhere
-              </p>
-            }
-          >
-            <p style={{ color: "#a0aec8", marginTop: "-30px" }}>
-              Open Terminal on your device
-            </p>
-            <p style={{ color: "#a0aec8" }}>
-              Copy paste your host link & press enter
-            </p>
-            <p style={{ color: "#a0aec8" }}>Enter your password. voila!</p>
-            <p style={{ color: "#a0aec8" }}>Create as much as dbs you want!</p>
-          </Card>
-        </Col>
-        <Col xxl={4} xl={4} lg={4} xs={2} md={1} sm={2} />
+        <Col xxl={3} xl={3} lg={3} xs={2} md={2} sm={2} />
       </Row>
-
-      <Row style={{ marginTop: "-125px" }}>
-        <Col xxl={3} xl={3} lg={3} xs={2} md={3} sm={2} />
-        <Col xxl={4} xl={4} lg={4} xs={20} md={10} sm={20}>
+      <Row style={{marginTop: "1%"}}>
+        <Col xxl={3} xl={3} lg={3} xs={2} md={2} sm={2} />
+        <Col xxl={8} xl={8} lg={8} xs={9} md={9} sm={9}>
           <p style={{ color: "#738095" }}>Destination Name</p>
           <Input
             bordered={false}
@@ -181,9 +156,8 @@ const BackupInfo = () => {
             onChange={(e) => setDest(e.target.value)}
           />
         </Col>
-        <Col xxl={1} xl={1} lg={1} xs={2} md={3} sm={2} />
-        <Col xxl={0} lg={0} xl={0} xs={2} md={3} sm={2} />
-        <Col xxl={4} xl={4} lg={4} xs={20} md={10} sm={20}>
+        <Col xxl={2} xl={2} lg={2} xs={1} md={2} sm={2} />
+        <Col xxl={8} xl={8} lg={8} xs={9} md={9} sm={9}>
           <p style={{ color: "#738095" }}>Destination URL</p>
           <Input
             bordered={false}
@@ -196,17 +170,12 @@ const BackupInfo = () => {
             onChange={(e) => setDestUrl(e.target.value)}
           />
         </Col>
-        <Col xxl={3} xl={3} lg={3} xs={2} md={3} sm={2} />
+        <Col xxl={3} xl={3} lg={3} xs={2} md={2} sm={2} />
       </Row>
-      <Row>
+      <Row style={{marginTop: "1%"}}>
+      <Col xxl={3} xl={3} lg={3} xs={2} md={2} sm={2} />
         <Col
-          xxl={4}
-          xl={4}
-          lg={4}
-          xs={20}
-          md={10}
-          sm={20}
-          style={{ marginLeft: "233px", marginTop: "20px" }}
+          xxl={8} xl={8} lg={8} xs={9} md={9} sm={9}
         >
           <p style={{ color: "#738095" }}>API key ID</p>
           <Input
@@ -220,14 +189,10 @@ const BackupInfo = () => {
             onChange={(e) => setApiKey(e.target.value)}
           />
         </Col>
+        <Col xxl={2} xl={2} lg={2} xs={1} md={2} sm={2} />
+
         <Col
-          xxl={4}
-          xl={4}
-          lg={4}
-          xs={20}
-          md={10}
-          sm={20}
-          style={{ marginLeft: "100px", marginTop: "20px" }}
+          xxl={8} xl={8} lg={8} xs={9} md={9} sm={9}
         >
           <p style={{ color: "#738095" }}>API key Secret</p>
           <Input
@@ -242,15 +207,10 @@ const BackupInfo = () => {
           />
         </Col>
       </Row>
-      <Row>
+      <Row style={{marginTop:"1%"}}>
+      <Col xxl={3} xl={3} lg={3} xs={2} md={2} sm={2} />
         <Col
-          xxl={4}
-          xl={4}
-          lg={4}
-          xs={20}
-          md={10}
-          sm={20}
-          style={{ marginLeft: "233px", marginTop: "20px" }}
+          xxl={8} xl={8} lg={8} xs={9} md={9} sm={9}
         >
           <p style={{ color: "#738095" }}>Username</p>
           <Input
@@ -264,14 +224,10 @@ const BackupInfo = () => {
             onChange={(e) => setUsername(e.target.value)}
           />
         </Col>
+        <Col xxl={2} xl={2} lg={2} xs={1} md={2} sm={2} />
+
         <Col
-          xxl={4}
-          xl={4}
-          lg={4}
-          xs={20}
-          md={10}
-          sm={20}
-          style={{ marginLeft: "100px", marginTop: "20px" }}
+          xxl={8} xl={8} lg={8} xs={9} md={9} sm={9}
         >
           <p style={{ color: "#738095" }}>Password</p>
           <Input
@@ -286,15 +242,15 @@ const BackupInfo = () => {
           />
         </Col>
       </Row>
-      <Row>
+      <Row style={{marginTop: "1%"}}>
+      <Col xxl={3} xl={3} lg={3} xs={2} md={2} sm={2} />
         <Col
           xxl={4}
           xl={4}
           lg={4}
-          xs={20}
+          xs={10}
           md={10}
-          sm={20}
-          style={{ marginLeft: "233px", marginTop: "20px" }}
+          sm={10}
         >
           <p style={{ color: "#738095" }}>Set Backup Time</p>
           <TimePicker
@@ -303,27 +259,58 @@ const BackupInfo = () => {
           />
         </Col>
       </Row>
-      <Row>
-        <Row>
-          <Button
+      <Row style={{marginTop: "1%"}}>
+        <Col xxl={3} xl={3} lg={3} xs={2} md={2} sm={2} />
+        <Col
+          xxl={4}
+          xl={4}
+          lg={4}
+          xs={10}
+          md={10}
+          sm={10}
+        >
+         <Button
             type="text"
             style={{
               color: "black",
               backgroundColor: "#42e8e0",
-              marginLeft: "233px",
-              marginTop: "25px",
             }}
             onClick={handleClick}
           >
             <b>Create Backup</b>
           </Button>
-        </Row>
-        <Col xxl={3} xl={3} lg={3} xs={2} md={3} sm={2} />
-        <Col xxl={9} xl={9} lg={9} xs={20} md={10} sm={20}></Col>
-        <Col xxl={9} xl={9} lg={9} md={8} />
-        <Col xxl={3} xl={3} lg={3} xs={2} md={3} sm={2} />
+        </Col>
       </Row>
       <NotificationContainer />
+      </Col>
+      <Col xxl={6} xl={6} lg={6} xs={6} md={6} sm={6}>
+      <Card
+            style={{
+              // width: "308px",
+              backgroundColor: "#283141",
+              border: "none",
+            }}
+            headStyle={{
+              borderBottom: "none",
+            }}
+            title={
+              <p style={{ color: "#6abfaf" }}>
+                Connect to your cluster from anywhere
+              </p>
+            }
+          >
+            <p style={{ color: "#a0aec8" }}>
+              Open Terminal on your device
+            </p>
+            <p style={{ color: "#a0aec8" }}>
+              Copy paste your host link & press enter
+            </p>
+            <p style={{ color: "#a0aec8" }}>Enter your password. voila!</p>
+            <p style={{ color: "#a0aec8" }}>Create as much as dbs you want!</p>
+          </Card>
+      </Col>
+      <Col xxl={1} xl={1} lg={1} xs={1} md={1} sm={1}/>
+      </Row>
     </>
   );
 };
