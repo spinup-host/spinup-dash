@@ -1,25 +1,25 @@
-import toast from "react-hot-toast";
+import toast from 'react-hot-toast';
 
 export const createNotification = (info, message) => {
-  if (info === "success" || info === "copying") {
+  if (info === 'success' || info === 'copying') {
     return toast.success(message);
   }
-  if (info === "error") {
+  if (info === 'error') {
     return toast.error(message);
   }
-  if (info === "info") {
+  if (info === 'info') {
     return toast(message, {
-      icon: "ℹ️",
+      icon: 'ℹ️'
     });
   }
-  if (info === "warning") {
+  if (info === 'warning') {
     return toast(message, {
-      icon: "⚠️",
+      icon: '⚠️'
     });
   }
-  if (info === "working") {
+  if (info === 'working') {
     return toast(message, {
-      icon: "🚧",
+      icon: '🚧'
     });
   }
 };

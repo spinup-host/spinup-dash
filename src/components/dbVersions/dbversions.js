@@ -1,5 +1,5 @@
-import React from "react";
-import "./dbversions.css";
+import React from 'react';
+import './dbversions.css';
 
 const DatabaseVersion = (props) => {
   var selectedVersion = props.selectedVersion;

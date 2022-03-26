@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
-import Navbar from "../navbar/navbar";
-import AllCluster from "../allcluster/allcluster";
+import Navbar from '../navbar/navbar';
+import AllCluster from '../allcluster/allcluster';
 
-import { useSelector, useDispatch } from "react-redux";
-import { loggingIn } from "../../actions/logIn";
+import { useSelector, useDispatch } from 'react-redux';
+import { loggingIn } from '../../actions/logIn';
 
 const Dashboard = () => {
   var history = useHistory();
@@ -15,10 +15,10 @@ const Dashboard = () => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    if (!userDetails.username && !localStorage.getItem("details")) {
-      history.push("/login");
+    if (!userDetails.username && !localStorage.getItem('details')) {
+      history.push('/login');
     } else {
-      dispatch(loggingIn(JSON.parse(localStorage.getItem("details"))));
+      dispatch(loggingIn(JSON.parse(localStorage.getItem('details'))));
     }
   }, []);
 
