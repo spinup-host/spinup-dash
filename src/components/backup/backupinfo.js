@@ -6,7 +6,6 @@ import NotificationContainer from "../notifications/container";
 import { createNotification } from "../notifications/notify";
 import Navbar from "../navbar/navbar";
 
-//some css for selected and unselected buttons (config , databses and monitoring)
 const selectedElement = {
   color: "#738095",
   borderBottom: "3px solid #ff9580",
@@ -206,7 +205,7 @@ const BackupInfo = () => {
           xs={20}
           md={10}
           sm={20}
-          style={{ marginLeft: "233px", marginTop: "20px" }}
+          style={{ marginLeft: "130px", marginTop: "20px" }}
         >
           <p style={{ color: "#738095" }}>API key ID</p>
           <Input
@@ -227,7 +226,7 @@ const BackupInfo = () => {
           xs={20}
           md={10}
           sm={20}
-          style={{ marginLeft: "100px", marginTop: "20px" }}
+          style={{ marginLeft: "50px", marginTop: "20px" }}
         >
           <p style={{ color: "#738095" }}>API key Secret</p>
           <Input
@@ -250,7 +249,7 @@ const BackupInfo = () => {
           xs={20}
           md={10}
           sm={20}
-          style={{ marginLeft: "233px", marginTop: "20px" }}
+          style={{ marginLeft: "130px", marginTop: "20px" }}
         >
           <p style={{ color: "#738095" }}>Username</p>
           <Input
@@ -271,7 +270,7 @@ const BackupInfo = () => {
           xs={20}
           md={10}
           sm={20}
-          style={{ marginLeft: "100px", marginTop: "20px" }}
+          style={{ marginLeft: "50px", marginTop: "20px" }}
         >
           <p style={{ color: "#738095" }}>Password</p>
           <Input
@@ -294,7 +293,7 @@ const BackupInfo = () => {
           xs={20}
           md={10}
           sm={20}
-          style={{ marginLeft: "233px", marginTop: "20px" }}
+          style={{ marginLeft: "130px", marginTop: "20px" }}
         >
           <p style={{ color: "#738095" }}>Set Backup Time</p>
           <TimePicker
@@ -310,7 +309,7 @@ const BackupInfo = () => {
             style={{
               color: "black",
               backgroundColor: "#42e8e0",
-              marginLeft: "233px",
+              marginLeft: "130px",
               marginTop: "25px",
             }}
             onClick={handleClick}
