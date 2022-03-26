@@ -290,12 +290,10 @@ const BackupInfo = () => {
             headStyle={{
               borderBottom: "none",
             }}
-            title={
-              <p style={{ color: "#6abfaf" }}>
+          >
+            <p style={{ color: "#6abfaf", fontSize: "18px" }}>
                 Connect to your cluster from anywhere
               </p>
-            }
-          >
             <p style={{ color: "#a0aec8" }}>
               Open Terminal on your device
             </p>
