@@ -326,7 +326,7 @@ const AllCluster = () => {
               }}
             />
             {creatingCluster ? (
-              <Col style={{ margin: "1em" }}>
+              <Col style={{ margin: "1em" ,marginLeft: "110px"}}>
                 <div
                   style={{
                     borderRadius: "5px",
@@ -343,7 +343,7 @@ const AllCluster = () => {
                     loading={creatingCluster}
                     size={25}
                   />
-                  <p style={{ color: "white", marginTop: "2.5em" }}>
+                  <p style={{ color: "white", marginTop: "2.5em"}}>
                     Creating Cluster
                   </p>
                 </div>
