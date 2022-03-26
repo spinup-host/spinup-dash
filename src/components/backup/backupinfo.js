@@ -223,15 +223,6 @@ const BackupInfo = () => {
         <Col xxl={0} xl={0} lg={0} xs={1} md={1} sm={1} />
 
         <Col xxl={8} xl={8} lg={8} xs={22} md={22} sm={22}>
-        <Col
-          xxl={4}
-          xl={4}
-          lg={4}
-          xs={20}
-          md={10}
-          sm={20}
-          style={{ marginLeft: "50px", marginTop: "20px" }}
-        >
           <p style={{ color: "#738095" }}>Password</p>
           <Input
             bordered={false}
