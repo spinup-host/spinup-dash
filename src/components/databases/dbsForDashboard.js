@@ -1,28 +1,28 @@
-import React from "react";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import PostgresLogo from "../../assets/images/PostgreSQL_logo.png";
-import MySqlLogo from "../../assets/images/MySQL_logo.png";
-import ectdLogo from "../../assets/images/etcd_logo.png";
+import React from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import PostgresLogo from '../../assets/images/PostgreSQL_logo.png';
+import MySqlLogo from '../../assets/images/MySQL_logo.png';
+import ectdLogo from '../../assets/images/etcd_logo.png';
 
-import "react-lazy-load-image-component/src/effects/blur.css";
-import "./db.css";
+import 'react-lazy-load-image-component/src/effects/blur.css';
+import './db.css';
 
 const DatabaseForDashboard = (props) => {
   const dataBaseSelected = props.databaseSelected;
   const databaseRendering = props.databaseRendering;
 
   var postgresLink, mysqlLink, ectdLink;
-  var imageLink = "";
+  var imageLink = '';
 
-  if (databaseRendering === "postgres") {
+  if (databaseRendering === 'postgres') {
     imageLink = PostgresLogo;
     postgresLink = imageLink;
   }
-  if (databaseRendering === "mysql") {
+  if (databaseRendering === 'mysql') {
     imageLink = MySqlLogo;
     mysqlLink = imageLink;
   }
-  if (databaseRendering === "ectd") {
+  if (databaseRendering === 'ectd') {
     imageLink = ectdLogo;
     ectdLink = imageLink;
   }
@@ -32,7 +32,7 @@ const DatabaseForDashboard = (props) => {
     var img = new Image();
     img.src = src;
     var complete = img.complete;
-    img.src = "";
+    img.src = '';
     return complete;
   }
 

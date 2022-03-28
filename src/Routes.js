@@ -1,19 +1,19 @@
-import React from "react";
-import { Redirect, Route, Switch } from "react-router-dom";
-import Login from "./components/login/login";
-import Dashboard from "./components/dashboard/dashboard";
-import ClusterInfo from "./components/clusterinfo/clusterinfo";
-import Settings from "./components/settings/settings";
-import BackupInfo from "./components/backup/backupinfo";
+import React from 'react';
+import { Redirect, Route, Switch } from 'react-router-dom';
+import Login from './components/login/login';
+import Dashboard from './components/dashboard/dashboard';
+import ClusterInfo from './components/clusterinfo/clusterinfo';
+import Settings from './components/settings/settings';
+import BackupInfo from './components/backup/backupinfo';
 
 const ProtectedRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
     render={(props) => {
-      if (localStorage.getItem("token")) {
+      if (localStorage.getItem('token')) {
         return <Component />;
       } else {
-        return <Redirect to={"/login"} />;
+        return <Redirect to={'/login'} />;
       }
     }}
   />
