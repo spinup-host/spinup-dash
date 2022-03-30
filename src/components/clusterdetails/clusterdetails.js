@@ -42,41 +42,39 @@ const ClusterDetails = () => {
   return (
     <>
       <Row style={{ marginTop: '50px' }}>
-        <Col xxl={3} xl={3} lg={3} xs={2} md={3} sm={2} />
-        <Col xxl={6} xl={6} lg={6} xs={8} md={8} sm={8} style={{ display: 'flex' }}>
+        <Col xxl={3} xl={3} lg={3} xs={2} md={2} sm={2} />
+        <Col xxl={18} xl={18} lg={18} xs={20} md={20} sm={20} style={{ display: 'flex' }}>
           <h2 style={{ color: 'white' }}>
             <b>Spinup</b>
           </h2>
-          <Tag style={{ height: '23px', marginTop: '7px', marginLeft: '20px' }} color="#f4f5f7">
+          <Tag style={{ height: '60%', marginTop: "0.3%", marginLeft: '1%' }} color="#f4f5f7">
             <b style={{ color: 'black' }}>Not Connected</b>
           </Tag>
           <p
             style={{
               color: '#3fd8d7',
-              marginTop: '9px',
-              marginLeft: '15px',
+              marginTop: '0.3%',
+              marginLeft: '0.5%',
               cursor: 'pointer'
             }}
           >
             <SyncOutlined /> Refresh
           </p>
-        </Col>
-        <Col xxl={11} xl={11} lg={11} xs={9} md={9} sm={9}>
           <Tag
             color="#2c383c"
-            style={{ float: 'right', borderRadius: '5px' }}
+            style={{ marginLeft: '10%', borderRadius: '5px' }}
             onClick={() => {
               createNotification('success', 'Copied Link!');
             }}
           >
-            <h2 style={{ color: '#dcdce5', marginTop: '9px', cursor: 'pointer' }}>
+            <h2 style={{ color: '#dcdce5', marginTop: '5%', cursor: 'pointer' }}>
               <CopyOutlined /> Copy Host Link
             </h2>
           </Tag>
         </Col>
-        <Col xxl={4} xl={4} lg={4} md={1} />
+        <Col xxl={3} xl={3} lg={3} xs={2} md={2} sm={2} />
       </Row>
-      <Row style={{ marginTop: '20px' }}>
+      <Row style={{ marginTop: '1%' }}>
         <Col xxl={3} xl={3} lg={3} xs={2} md={3} sm={2} />
         <Col xxl={17} xl={17} lg={17} xs={20} md={20} sm={20} style={{ display: 'flex' }}>
           <Button
