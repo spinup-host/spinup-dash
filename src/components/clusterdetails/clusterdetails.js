@@ -137,10 +137,14 @@ const ClusterDetails = () => {
         </Col>
         <Col xxl={4} xl={4} lg={4} xs={2} md={1} sm={2} />
       </Row>
-      <Divider style={{ backgroundColor: '#313b4d', marginTop: '-1px' }} />
+      <Divider style={{ backgroundColor: '#313b4d' }} />
       <Row>
-        <Col xxl={3} xl={3} lg={3} xs={2} md={3} sm={2} />
-        <Col xxl={9} xl={9} lg={9} xs={20} md={10} sm={20}>
+      <Col xxl={1} xl={1} lg={1} xs={1} md={1} sm={1} />
+      <Col xxl={16} xl={16} lg={16} xs={22} md={22} sm={22}>
+      
+      <Row>
+        <Col xxl={3} xl={3} lg={3} xs={1} md={1} sm={1} />
+        <Col xxl={18} xl={18} lg={18} xs={22} md={22} sm={22}>
           <p style={{ color: '#738095' }}>Host</p>
           <Input
             bordered={false}
@@ -154,34 +158,11 @@ const ClusterDetails = () => {
             value={host}
           />
         </Col>
-        <Col xxl={4} xl={4} lg={4} />
-        <Col xxl={4} xl={4} lg={4} xs={20} md={10} sm={20}>
-          <Card
-            style={{
-              width: '308px',
-              backgroundColor: '#283141',
-              border: 'none'
-            }}
-            headStyle={{
-              borderBottom: 'none'
-            }}
-            title={
-              <p style={{ color: '#6abfaf' }}>
-                Connect to your cluster <br /> from anywhere
-              </p>
-            }
-          >
-            <p style={{ color: '#a0aec8', marginTop: '-30px' }}>Open Terminal on your device</p>
-            <p style={{ color: '#a0aec8' }}>Copy paste your host link & press enter</p>
-            <p style={{ color: '#a0aec8' }}>Enter your password. voila!</p>
-            <p style={{ color: '#a0aec8' }}>Create as much as dbs you want!</p>
-          </Card>
-        </Col>
-        <Col xxl={4} xl={4} lg={4} xs={2} md={1} sm={2} />
+        <Col xxl={3} xl={3} lg={3} xs={2} md={2} sm={2} />
       </Row>
-      <Row style={{ marginTop: '-125px' }}>
-        <Col xxl={3} xl={3} lg={3} xs={2} md={3} sm={2} />
-        <Col xxl={4} xl={4} lg={4} xs={20} md={10} sm={20}>
+      <Row style={{marginTop: "2%"}}>
+        <Col xxl={3} xl={3} lg={3} xs={1} md={1} sm={1} />
+        <Col xxl={8} xl={8} lg={8} xs={22} md={22} sm={22}>
           <p style={{ color: '#738095' }}>Database Name</p>
           <Input
             bordered={false}
@@ -195,9 +176,9 @@ const ClusterDetails = () => {
             value={database}
           />
         </Col>
-        <Col xxl={1} xl={1} lg={1} xs={2} md={3} sm={2} />
-        <Col xxl={0} lg={0} xl={0} xs={2} md={3} sm={2} />
-        <Col xxl={4} xl={4} lg={4} xs={20} md={10} sm={20}>
+        <Col xxl={2} xl={2} lg={2} xs={1} md={1} sm={1} />
+        <Col xxl={0} xl={0} lg={0} xs={1} md={1} sm={1} />
+        <Col xxl={8} xl={8} lg={8} xs={22} md={22} sm={22}>
           <p style={{ color: '#738095' }}>Port</p>
           <Input
             bordered={false}
@@ -211,7 +192,7 @@ const ClusterDetails = () => {
             value={port}
           />
         </Col>
-        <Col xxl={3} xl={3} lg={3} xs={2} md={3} sm={2} />
+        <Col xxl={3} xl={3} lg={3} xs={1} md={1} sm={1} />
       </Row>
       <Row>
         <Col xxl={3} xl={3} lg={3} xs={2} md={3} sm={2} />
@@ -222,8 +203,8 @@ const ClusterDetails = () => {
         <Col xxl={3} xl={3} lg={3} xs={2} md={3} sm={2} />
       </Row>
       <Row>
-        <Col xxl={3} xl={3} lg={3} xs={2} md={3} sm={2} />
-        <Col xxl={4} xl={4} lg={4} xs={20} md={10} sm={20}>
+      <Col xxl={3} xl={3} lg={3} xs={1} md={1} sm={1} />
+      <Col xxl={8} xl={8} lg={8} xs={22} md={22} sm={22}>
           <p style={{ color: '#738095' }}>Username</p>
           <Input
             bordered={false}
@@ -241,8 +222,8 @@ const ClusterDetails = () => {
         </Col>
       </Row>
       <Row style={{ marginTop: '25px' }}>
-        <Col xxl={3} xl={3} lg={3} xs={2} md={3} sm={2} />
-        <Col xxl={4} xl={4} lg={4} xs={20} md={10} sm={20} style={{ marginRight: '1em' }}>
+        <Col xxl={3} xl={3} lg={3} xs={1} md={1} sm={1} />
+        <Col xxl={8} xl={8} lg={8} xs={22} md={22} sm={22}>
           <p style={{ color: '#738095' }}>
             {!changePasswordMode ? 'Password' : 'Enter new password'}
           </p>
@@ -292,8 +273,8 @@ const ClusterDetails = () => {
         ) : null}
       </Row>
       <Row style={{ marginTop: '-120px' }}>
-        <Col xxl={3} xl={3} lg={3} xs={2} md={3} sm={2} />
-        <Col xxl={4} xl={4} lg={4} xs={20} md={10} sm={20}>
+      <Col xxl={3} xl={3} lg={3} xs={1} md={1} sm={1} />
+      <Col xxl={8} xl={8} lg={8} xs={22} md={22} sm={22}>
           {changePasswordMode ? (
             <div>
               <p style={{ color: '#738095' }}>Confirm password</p>
@@ -338,7 +319,7 @@ const ClusterDetails = () => {
       ) : null}
 
       <Row style={!changePasswordMode ? { marginTop: '155px' } : { marginTop: '25px' }}>
-        <Col xxl={3} xl={3} lg={3} xs={2} md={3} sm={2} />
+      <Col xxl={3} xl={3} lg={3} xs={1} md={1} sm={1} />
         <Button
           type="text"
           style={{
@@ -380,12 +361,36 @@ const ClusterDetails = () => {
         ) : null}
       </Row>
       <Row>
-        <Col xxl={3} xl={3} lg={3} xs={2} md={3} sm={2} />
-        <Col xxl={9} xl={9} lg={9} xs={20} md={10} sm={20}>
+      <Col xxl={3} xl={3} lg={3} xs={1} md={1} sm={1} />
+      <Col xxl={8} xl={8} lg={8} xs={22} md={22} sm={22}>
           <Divider style={{ backgroundColor: '#313b4d', marginTop: '30px' }} />
         </Col>
       </Row>
       <NotificationContainer />
+      </Col>
+      <Col xxl={0} xl={0} lg={0} xs={1} md={1} sm={1} />
+        <Col xxl={0} xl={0} lg={0} xs={2} md={2} sm={2} />
+        <Col style={{ marginTop: '1%' }} xxl={6} xl={6} lg={6} xs={21} md={21} sm={21}>
+          <Card
+            style={{
+              backgroundColor: '#283141',
+              border: 'none'
+            }}
+            headStyle={{
+              borderBottom: 'none'
+            }}
+          >
+            <p style={{ color: '#6abfaf', fontSize: '18px' }}>
+              Connect to your cluster from anywhere
+            </p>
+            <p style={{ color: '#a0aec8' }}>Open Terminal on your device</p>
+            <p style={{ color: '#a0aec8' }}>Copy paste your host link & press enter</p>
+            <p style={{ color: '#a0aec8' }}>Enter your password. voila!</p>
+            <p style={{ color: '#a0aec8' }}>Create as much as dbs you want!</p>
+          </Card>
+        </Col>
+        <Col xxl={1} xl={1} lg={1} xs={1} md={1} sm={1} />
+      </Row>
     </>
   );
 };
