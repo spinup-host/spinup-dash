@@ -62,10 +62,6 @@ const Login = () => {
     }
   }
 
-  const handleAPIKeyChange = (e) => {
-    setApiKey(e.target.value);
-  }
-
   useEffect(() => {
     var code =
       window.location.href.match(/\?code=(.*)/) && window.location.href.match(/\?code=(.*)/)[1];
@@ -106,11 +102,10 @@ const Login = () => {
                   backgroundColor: '#394150',
                   color: 'white',
                   maxWidth: "50%",
-                  // height: '60px',
                   borderRadius: '5px'
                 }}
                 // value={apiKey}
-                onChange={handleAPIKeyChange}
+                onChange={(e) => setApiKey(e.target.value)}
               />
             <Button
               style={{
