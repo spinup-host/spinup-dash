@@ -10,6 +10,8 @@ import NotificationContainer from '../notifications/container';
 import { createNotification } from '../notifications/notify';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import usericon from '../../assets/images/usericon2.png';
+import { Input, Button } from 'antd';
+
 
 import './login.css';
 const override = css`
@@ -93,22 +95,29 @@ const Login = () => {
           <div className="Title">Welcome to SpinUp</div>
           <div style={{ color: '#dcdce5' }}>
             <span>Enter Api Key: </span>
-            <input
-              value={apiKey}
-              type="text"
-              style={{ color: '#06071d', marginLeft: '5px' }}
-              onChange={handleKeyChange}
-            ></input>
-            <button
+            <Input
+                placeholder="Api Key"
+                bordered={false}
+                style={{
+                  backgroundColor: '#394150',
+                  color: 'white',
+                  maxWidth: "50%",
+                  borderRadius: '5px'
+                }}
+                // value={apiKey}
+                onChange={(e) => setApiKey(e.target.value)}
+              />
+            <Button
               style={{
                 backgroundColor: '#42e8e0',
                 margin: '5px',
-                color: '#06071d'
+                borderRadius: '5px'
+                // color: '#06071d'
               }}
               onClick={handleButtonClick}
             >
               Go!
-            </button>
+            </Button>
             <br></br>
             <hr></hr>
             <div className="text-style" style={{ color: '#dcdce5' }}>

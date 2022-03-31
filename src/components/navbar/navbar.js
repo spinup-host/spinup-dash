@@ -53,7 +53,7 @@ const Navbar = ({ userDetails }) => {
         <Row>
           <Col xxl={3} xl={3} lg={3} xs={2} md={3} sm={2} />
           <Col xxl={17} xl={17} lg={17} xs={20} md={20} sm={20}>
-            <a style={{ float: 'left' }} href="/#">
+            <a style={{ float: 'left' }} href="/dashboard">
               <img src={Logo} alt="spinup-logo" />
             </a>
             <Menu
