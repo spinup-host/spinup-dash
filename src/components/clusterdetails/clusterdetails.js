@@ -1,20 +1,19 @@
 import React, { useState } from 'react';
 
-import { Row, Col, Tag, Divider, Input, Card, Button } from 'antd';
+import { Row, Col, Divider, Input, Card, Button } from 'antd';
 import { useHistory } from 'react-router-dom';
 
 import {
-  CopyOutlined,
   DatabaseOutlined,
   SettingOutlined,
   LineChartOutlined,
-  SyncOutlined,
   EyeInvisibleOutlined,
   EyeTwoTone,
   CloseCircleOutlined
 } from '@ant-design/icons';
 import NotificationContainer from '../notifications/container';
 import { createNotification } from '../notifications/notify';
+import CustomHeader from '../header/header';
 
 //some css for selected and unselected buttons (config , databses and monitoring)
 const selectedElement = {
@@ -41,39 +40,7 @@ const ClusterDetails = () => {
   };
   return (
     <>
-      <Row style={{ marginTop: '50px' }}>
-        <Col xxl={3} xl={3} lg={3} xs={2} md={2} sm={2} />
-        <Col xxl={18} xl={18} lg={18} xs={20} md={20} sm={20} style={{ display: 'flex' }}>
-          <h2 style={{ color: 'white' }}>
-            <b>Spinup</b>
-          </h2>
-          <Tag style={{ height: '60%', marginTop: "0.3%", marginLeft: '1%' }} color="#f4f5f7">
-            <b style={{ color: 'black' }}>Not Connected</b>
-          </Tag>
-          <p
-            style={{
-              color: '#3fd8d7',
-              marginTop: '0.3%',
-              marginLeft: '0.5%',
-              cursor: 'pointer'
-            }}
-          >
-            <SyncOutlined /> Refresh
-          </p>
-          <Tag
-            color="#2c383c"
-            style={{ marginLeft: '10%', borderRadius: '5px' }}
-            onClick={() => {
-              createNotification('success', 'Copied Link!');
-            }}
-          >
-            <h2 style={{ color: '#dcdce5', marginTop: '5%', cursor: 'pointer' }}>
-              <CopyOutlined /> Copy Host Link
-            </h2>
-          </Tag>
-        </Col>
-        <Col xxl={3} xl={3} lg={3} xs={2} md={2} sm={2} />
-      </Row>
+    <CustomHeader />
       <Row style={{ marginTop: '1%' }}>
         <Col xxl={3} xl={3} lg={3} xs={2} md={3} sm={2} />
         <Col xxl={17} xl={17} lg={17} xs={20} md={20} sm={20} style={{ display: 'flex' }}>
