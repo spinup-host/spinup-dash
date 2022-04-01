@@ -13,7 +13,7 @@ const Dashboard = () => {
   var userDetails = useSelector((state) => state.userLogs);
 
   const [user, setUser] = useState(null);
-
+  const [isModalVisible,setIsModalVisible] = useState(false);
   useEffect(() => {
     if (!userDetails.username && !localStorage.getItem('details')) {
       history.push('/login');
@@ -28,8 +28,8 @@ const Dashboard = () => {
 
   return (
     <>
-      <Navbar userDetails={user} />
-      <AllCluster />
+      <Navbar userDetails={user} setIsModalVisible={setIsModalVisible}/>
+      <AllCluster addNewCluster={isModalVisible} setAddNewCluster={setIsModalVisible}/>
     </>
   );
 };

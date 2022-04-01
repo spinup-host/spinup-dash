@@ -12,7 +12,7 @@ import { loggingOut } from '../../actions/logOut';
 
 import 'antd/dist/antd.css';
 
-const Navbar = ({ userDetails }) => {
+const Navbar = ({ userDetails , setIsModalVisible }) => {
   var history = useHistory();
 
   const dispatch = useDispatch();
@@ -73,6 +73,7 @@ const Navbar = ({ userDetails }) => {
                     color: 'black',
                     backgroundColor: '#42e8e0'
                   }}
+                  onClick={()=>setIsModalVisible(true)}
                 >
                   <b>Create Cluster</b>
                 </Button>

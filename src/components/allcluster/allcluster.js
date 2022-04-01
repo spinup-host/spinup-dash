@@ -15,7 +15,7 @@ import { createNotification } from '../notifications/notify';
 
 const MemoedDatabases = React.memo(DatabaseForDashboard);
 
-const AllCluster = () => {
+const AllCluster = ({addNewCluster,setAddNewCluster}) => {
   let history = useHistory();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [name, setName] = useState('');
@@ -92,6 +92,7 @@ const AllCluster = () => {
     var answer = await handleOk(name, database, version, username, password);
     setCreatingCluster(false);
     setIsModalVisible(false);
+    setAddNewCluster(false);
     setName('');
     setVersion('13');
     setDatabase('postgresql');
@@ -110,6 +111,8 @@ const AllCluster = () => {
     setVersion('13');
     setDatabase('postgresql');
     setIsModalVisible(false);
+    setAddNewCluster(false);
+
   };
 
   const handleName = (e) => {
@@ -175,7 +178,7 @@ const AllCluster = () => {
           </Row>
           <Modal
             bodyStyle={{ backgroundColor: '#212936' }}
-            visible={isModalVisible}
+            visible={isModalVisible || addNewCluster}
             title="Add New Cluster"
             onOk={handleFinish}
             onCancel={handleCancel}
