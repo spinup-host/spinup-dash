@@ -53,17 +53,17 @@ const AllCluster = ({addNewCluster,setAddNewCluster}) => {
         localStorage.setItem('currdbname', clustername);
         localStorage.setItem('hostname', cluster.host);
         localStorage.setItem('port', cluster.port);
-        localStorage.setItem('containerid', cluster.cluseter_id);
+        localStorage.setItem('containerid', cluster.cluster_id);
         localStorage.setItem('username', cluster.username);
         history.push(`/dashboard/${cluster.cluster_id}`);
     };
 
-  const listMyclusters = () => {
+  const listClusters = () => {
     //idk y i did this but i did it and its gonna stay this way for a while
     if (myClusters && myClusters.length > 0) {
       return myClusters.map((cluster) => {
         return (
-          <Col style={{ margin: '1em' }} onClick={() => handleCluster(cluster.name)}>
+          <Col style={{ margin: '1em' }} key={cluster.id} onClick={() => handleCluster(cluster.name)}>
             <div
               // onClick={showModal}
               style={{
@@ -93,7 +93,7 @@ const AllCluster = ({addNewCluster,setAddNewCluster}) => {
     // console.log(name, database, version);
     createNotification('success', 'Redirecting!');
     setCreatingCluster(true);
-    var answer = await handleOk(name, database, version, username, password);
+    let answer = await handleOk(name, database, version, username, password);
     setCreatingCluster(false);
     setIsModalVisible(false);
     setAddNewCluster(false);
@@ -101,13 +101,12 @@ const AllCluster = ({addNewCluster,setAddNewCluster}) => {
     setVersion('13');
     setDatabase('postgresql');
     // console.log(answer.data);
-    localStorage.setItem('hostname', answer.data.HostName);
-    localStorage.setItem('port', answer.data.Port);
-    localStorage.setItem('containerid', answer.data.ContainerID);
+    localStorage.setItem('hostname', answer.data.host);
+    localStorage.setItem('port', answer.data.port);
+    localStorage.setItem('containerid', answer.data.cluster_id);
     localStorage.setItem('username', username);
     localStorage.setItem('password', password);
-    // window.location.href = `https://app.spinup.host/dashboard/${answer.data.ContainerID}`;
-    history.push(`/dashboard/${answer.data.ContainerID}`);
+    history.push(`/dashboard/${answer.data.cluster_id}`);
   };
 
   const handleCancel = () => {
@@ -178,7 +177,7 @@ const AllCluster = ({addNewCluster,setAddNewCluster}) => {
               </Col>
             ) : null}
             {/* Now we list the user clusters*/}
-            {listMyclusters()}
+            {listClusters()}
           </Row>
           <Modal
             bodyStyle={{ backgroundColor: '#212936' }}

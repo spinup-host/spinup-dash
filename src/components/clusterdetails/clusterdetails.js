@@ -18,7 +18,6 @@ import CustomHeader from '../header/header';
 //some css for selected and unselected buttons (config , databses and monitoring)
 const selectedElement = {
   marginLeft: '40px',
-  color: '#738095',
   borderBottom: '3px solid #ff9580',
   color: '#ffffff',
   fontWeight: '500'
