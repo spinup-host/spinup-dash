@@ -32,7 +32,7 @@ const AllCluster = ({addNewCluster,setAddNewCluster}) => {
 
   useEffect(() => {
     async function fetchMyClusters() {
-      var res = await getClusters();
+      let res = await getClusters();
       //console.log(res.data);
       setMyClusters(res.data);
       setLoadingClusters(false);
@@ -43,23 +43,27 @@ const AllCluster = ({addNewCluster,setAddNewCluster}) => {
   //useEffects ending here -------------
 
   //functions here-----------
-  const getclusterid = async (clustername) => {
+  const getClusterInfo = async (clustername) => {
     let response = await axios.get(`${process.env.REACT_APP_SERVER_URI}/listcluster`);
-    return response.data.filter((clusterobj) => clusterobj.name === clustername)[0].cluster_id;
+    return response.data.filter((clusterobj) => clusterobj.name === clustername)[0];
   };
 
-  const handleCluster = async (clustername) => {
-    let clusterid = await getclusterid(clustername);
-    localStorage.setItem('currdbname', clustername);
-    history.push(`/dashboard/${clusterid}`);
-  };
+    const handleCluster = async (clustername) => {
+        let cluster = await getClusterInfo(clustername);
+        localStorage.setItem('currdbname', clustername);
+        localStorage.setItem('hostname', cluster.host);
+        localStorage.setItem('port', cluster.port);
+        localStorage.setItem('containerid', cluster.cluster_id);
+        localStorage.setItem('username', cluster.username);
+        history.push(`/dashboard/${cluster.cluster_id}`);
+    };
 
-  const listMyclusters = () => {
+  const listClusters = () => {
     //idk y i did this but i did it and its gonna stay this way for a while
     if (myClusters && myClusters.length > 0) {
       return myClusters.map((cluster) => {
         return (
-          <Col style={{ margin: '1em' }} onClick={() => handleCluster(cluster.name)}>
+          <Col style={{ margin: '1em' }} key={cluster.id} onClick={() => handleCluster(cluster.name)}>
             <div
               // onClick={showModal}
               style={{
@@ -89,7 +93,7 @@ const AllCluster = ({addNewCluster,setAddNewCluster}) => {
     // console.log(name, database, version);
     createNotification('success', 'Redirecting!');
     setCreatingCluster(true);
-    var answer = await handleOk(name, database, version, username, password);
+    let answer = await handleOk(name, database, version, username, password);
     setCreatingCluster(false);
     setIsModalVisible(false);
     setAddNewCluster(false);
@@ -97,13 +101,12 @@ const AllCluster = ({addNewCluster,setAddNewCluster}) => {
     setVersion('13');
     setDatabase('postgresql');
     // console.log(answer.data);
-    localStorage.setItem('hostname', answer.data.HostName);
-    localStorage.setItem('port', answer.data.Port);
-    localStorage.setItem('containerid', answer.data.ContainerID);
+    localStorage.setItem('hostname', answer.data.host);
+    localStorage.setItem('port', answer.data.port);
+    localStorage.setItem('containerid', answer.data.cluster_id);
     localStorage.setItem('username', username);
     localStorage.setItem('password', password);
-    // window.location.href = `https://app.spinup.host/dashboard/${answer.data.ContainerID}`;
-    history.push(`/dashboard/${answer.data.ContainerID}`);
+    history.push(`/dashboard/${answer.data.cluster_id}`);
   };
 
   const handleCancel = () => {
@@ -174,7 +177,7 @@ const AllCluster = ({addNewCluster,setAddNewCluster}) => {
               </Col>
             ) : null}
             {/* Now we list the user clusters*/}
-            {listMyclusters()}
+            {listClusters()}
           </Row>
           <Modal
             bodyStyle={{ backgroundColor: '#212936' }}
@@ -341,51 +344,3 @@ const AllCluster = ({addNewCluster,setAddNewCluster}) => {
 };
 
 export default AllCluster;
-//original code for all databases before map---(below)
-{
-  /* <Col span={8}>
-              <button
-                onClick={() => setDatabase("postgresql")}
-                style={{
-                  border: "0px solid transparent",
-                  background: "transparent",
-                  cursor: "pointer",
-                }}
-              >
-                <DatabaseForDashboard
-                  databaseSelected={database}
-                  databaseRendering={"postgresql"}
-                />
-              </button>
-            </Col>
-            <Col span={8}>
-              <button
-                onClick={() => setDatabase("mysql")}
-                style={{
-                  border: "0px solid transparent",
-                  background: "transparent",
-                  cursor: "pointer",
-                }}
-              >
-                <DatabaseForDashboard
-                  databaseSelected={database}
-                  databaseRendering={"mysql"}
-                />
-              </button>
-            </Col>
-            <Col span={8}>
-              <button
-                onClick={() => setDatabase("ectd")}
-                style={{
-                  border: "0px solid transparent",
-                  background: "transparent",
-                  cursor: "pointer",
-                }}
-              >
-                <DatabaseForDashboard
-                  databaseSelected={database}
-                  databaseRendering={"ectd"}
-                />
-              </button>
-            </Col> */
-}

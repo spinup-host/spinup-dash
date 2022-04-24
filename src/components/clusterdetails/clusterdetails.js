@@ -18,7 +18,6 @@ import CustomHeader from '../header/header';
 //some css for selected and unselected buttons (config , databses and monitoring)
 const selectedElement = {
   marginLeft: '40px',
-  color: '#738095',
   borderBottom: '3px solid #ff9580',
   color: '#ffffff',
   fontWeight: '500'
@@ -28,7 +27,7 @@ const ClusterDetails = () => {
   let history = useHistory();
   const [host, setHost] = useState(localStorage.getItem('hostname'));
   const [database, setDatabase] = useState('postgres');
-  const [port, setPort] = useState(localStorage.getItem('port'));
+  const [port] = useState(localStorage.getItem('port'));
   const [username, setUsername] = useState(localStorage.getItem('username'));
   const [passwordChanging, setPasswordChanging] = useState('');
   const [realPassword, setRealPassword] = useState(localStorage.getItem('password'));
