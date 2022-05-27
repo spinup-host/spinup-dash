@@ -5,6 +5,8 @@ import NotificationContainer from '../notifications/container';
 import { createNotification } from '../notifications/notify';
 import Navbar from '../navbar/navbar';
 import CustomHeader from '../header/header';
+import CustomNavigation from '../customNavigator/customNavigator';
+
 
 const selectedElement = {
   color: '#738095',
@@ -47,6 +49,7 @@ const BackupInfo = () => {
     <>
       <Navbar />
       <CustomHeader />
+      <CustomNavigation />
       <Row style={{ marginTop: '20px' }}>
         <Col xxl={3} xl={3} lg={3} xs={2} md={2} sm={2} />
         <Col xxl={18} xl={18} lg={18} xs={20} md={20} sm={20} style={{ display: 'flex' }}>

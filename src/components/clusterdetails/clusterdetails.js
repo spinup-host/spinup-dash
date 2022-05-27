@@ -1,30 +1,18 @@
 import React, { useState } from 'react';
 
 import { Row, Col, Divider, Input, Card, Button } from 'antd';
-import { useHistory } from 'react-router-dom';
 
 import {
-  DatabaseOutlined,
-  SettingOutlined,
-  LineChartOutlined,
   EyeInvisibleOutlined,
   EyeTwoTone,
   CloseCircleOutlined
 } from '@ant-design/icons';
 import NotificationContainer from '../notifications/container';
-import { createNotification } from '../notifications/notify';
 import CustomHeader from '../header/header';
+import CustomNavigation from '../customNavigator/customNavigator';
 
-//some css for selected and unselected buttons (config , databses and monitoring)
-const selectedElement = {
-  marginLeft: '40px',
-  borderBottom: '3px solid #ff9580',
-  color: '#ffffff',
-  fontWeight: '500'
-};
 
 const ClusterDetails = () => {
-  let history = useHistory();
   const [host, setHost] = useState(localStorage.getItem('hostname'));
   const [database, setDatabase] = useState('postgres');
   const [port] = useState(localStorage.getItem('port'));
@@ -34,73 +22,11 @@ const ClusterDetails = () => {
   const [confirm, setConfirm] = useState('');
   const [changePasswordMode, setChangePasswordMode] = useState(false);
   const [isBackup, setIsBackup] = useState(true);
-  const handleBackup = () => {
-    history.push('/backup');
-  };
+  
   return (
     <>
-    <CustomHeader />
-      <Row style={{ marginTop: '1%' }}>
-        <Col xxl={3} xl={3} lg={3} xs={2} md={3} sm={2} />
-        <Col xxl={17} xl={17} lg={17} xs={20} md={20} sm={20} style={{ display: 'flex' }}>
-          <Button
-            style={{
-              border: '0px solid transparent',
-              background: 'transparent'
-            }}
-            onClick={() => {
-              createNotification('working', 'Working on it!!');
-            }}
-          >
-            <h3 style={{ color: '#738095' }}>
-              <b>
-                <LineChartOutlined /> Monitoring
-              </b>
-            </h3>
-          </Button>
-          <Button
-            style={{
-              border: '0px solid transparent',
-              background: 'transparent'
-            }}
-            onClick={() => {
-              createNotification('working', 'Working on it!!');
-            }}
-          >
-            <h3 style={{ marginLeft: '40px', color: '#738095' }}>
-              <b>
-                <DatabaseOutlined /> Databases
-              </b>
-            </h3>
-          </Button>
-          <button
-            style={{
-              border: '0px solid transparent',
-              background: 'transparent'
-            }}
-          >
-            <h3>
-              <b style={selectedElement}>
-                <SettingOutlined /> Configurations
-              </b>
-            </h3>
-          </button>
-          <button
-            style={{
-              border: '0px solid transparent',
-              background: 'transparent'
-            }}
-            onClick={handleBackup}
-          >
-            <h3>
-              <b style={{ color: 'white', marginLeft: '20px' }}>
-                <SettingOutlined /> Backup
-              </b>
-            </h3>
-          </button>
-        </Col>
-        <Col xxl={4} xl={4} lg={4} xs={2} md={1} sm={2} />
-      </Row>
+      <CustomHeader />
+      <CustomNavigation />
       <Divider style={{ backgroundColor: '#313b4d' }} />
       <Row>
         <Col xxl={1} xl={1} lg={1} xs={1} md={1} sm={1} />
@@ -223,8 +149,7 @@ const ClusterDetails = () => {
                     color: 'white',
                     lineHeight: '1',
                     borderLeft: '1px solid #283141'
-                  }}
-                >
+                  }}>
                   <p>Must be atleast :</p>
                   <p>&nbsp;&nbsp;&nbsp;&nbsp;10-16 alpha-numeric characters</p>
                   <p>&nbsp;&nbsp;&nbsp;&nbsp;1 uppercase letter (A,B,..Z)</p>
@@ -300,8 +225,7 @@ const ClusterDetails = () => {
                 } else {
                   setChangePasswordMode(true);
                 }
-              }}
-            >
+              }}>
               <b>{changePasswordMode ? 'Save Changes' : 'Change Password'}</b>
             </Button>
             {changePasswordMode ? (
@@ -316,8 +240,7 @@ const ClusterDetails = () => {
                     setPasswordChanging('');
                     setConfirm('');
                     setChangePasswordMode(false);
-                  }}
-                >
+                  }}>
                   <b style={{ color: '#42e8e0' }}>Cancel</b>
                 </Button>
               </div>
@@ -341,8 +264,7 @@ const ClusterDetails = () => {
             }}
             headStyle={{
               borderBottom: 'none'
-            }}
-          >
+            }}>
             <p style={{ color: '#6abfaf', fontSize: '18px' }}>
               Connect to your cluster from anywhere
             </p>
