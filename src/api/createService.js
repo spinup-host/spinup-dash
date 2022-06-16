@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { createNotification } from '../components/notifications/notify';
 
-export const handleOk = async (name, database, version, username, password) => {
+export const handleOk = async (name, database, version, username, password, monitoring) => {
   //console.log(name, database, version);
   if (name.length === 0) {
     // Error Notification
@@ -25,7 +25,8 @@ export const handleOk = async (name, database, version, username, password) => {
           Type: database,
           Name: name,
           username: username,
-          password: password
+          password: password,
+          monitoring: monitoring ? "enable" : "disable"
         },
         version: {
           maj: parseInt(maj_ver),
