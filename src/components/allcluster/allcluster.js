@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
-import { Col, Row, Modal, Input, Button, Divider } from 'antd';
+import { Col, Row, Modal, Input, Button, Divider, Checkbox } from 'antd';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import DatabaseForDashboard from '../databases/dbsForDashboard';
@@ -15,7 +15,7 @@ import { createNotification } from '../notifications/notify';
 
 const MemoedDatabases = React.memo(DatabaseForDashboard);
 
-const AllCluster = ({addNewCluster,setAddNewCluster}) => {
+const AllCluster = ({ addNewCluster, setAddNewCluster }) => {
   let history = useHistory();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [name, setName] = useState('');
@@ -23,6 +23,7 @@ const AllCluster = ({addNewCluster,setAddNewCluster}) => {
   const [password, setPassword] = useState('');
   const [database, setDatabase] = useState('postgres');
   const [version, setVersion] = useState('13');
+  const [monitoring, setMonitoring] = useState(false);
   const allDbs = ['postgres', 'mysql', 'ectd'];
   const allVersions = [13, 12, 11, 10];
   const [myClusters, setMyClusters] = useState([]);
@@ -48,22 +49,25 @@ const AllCluster = ({addNewCluster,setAddNewCluster}) => {
     return response.data.filter((clusterobj) => clusterobj.name === clustername)[0];
   };
 
-    const handleCluster = async (clustername) => {
-        let cluster = await getClusterInfo(clustername);
-        localStorage.setItem('currdbname', clustername);
-        localStorage.setItem('hostname', cluster.host);
-        localStorage.setItem('port', cluster.port);
-        localStorage.setItem('containerid', cluster.cluster_id);
-        localStorage.setItem('username', cluster.username);
-        history.push(`/dashboard/${cluster.cluster_id}`);
-    };
+  const handleCluster = async (clustername) => {
+    let cluster = await getClusterInfo(clustername);
+    localStorage.setItem('currdbname', clustername);
+    localStorage.setItem('hostname', cluster.host);
+    localStorage.setItem('port', cluster.port);
+    localStorage.setItem('containerid', cluster.cluster_id);
+    localStorage.setItem('username', cluster.username);
+    history.push(`/dashboard/${cluster.cluster_id}`);
+  };
 
   const listClusters = () => {
     //idk y i did this but i did it and its gonna stay this way for a while
     if (myClusters && myClusters.length > 0) {
       return myClusters.map((cluster) => {
         return (
-          <Col style={{ margin: '1em' }} key={cluster.id} onClick={() => handleCluster(cluster.name)}>
+          <Col
+            style={{ margin: '1em' }}
+            key={cluster.id}
+            onClick={() => handleCluster(cluster.name)}>
             <div
               // onClick={showModal}
               style={{
@@ -75,8 +79,7 @@ const AllCluster = ({addNewCluster,setAddNewCluster}) => {
                 justifyContent: 'center',
                 alignItems: 'center',
                 cursor: 'pointer'
-              }}
-            >
+              }}>
               <h2 style={{ color: 'white' }}>{cluster.name}</h2>
             </div>
           </Col>
@@ -93,7 +96,7 @@ const AllCluster = ({addNewCluster,setAddNewCluster}) => {
     // console.log(name, database, version);
     createNotification('success', 'Redirecting!');
     setCreatingCluster(true);
-    let answer = await handleOk(name, database, version, username, password);
+    let answer = await handleOk(name, database, version, username, password, monitoring);
     setCreatingCluster(false);
     setIsModalVisible(false);
     setAddNewCluster(false);
@@ -106,6 +109,7 @@ const AllCluster = ({addNewCluster,setAddNewCluster}) => {
     localStorage.setItem('containerid', answer.data.cluster_id);
     localStorage.setItem('username', username);
     localStorage.setItem('password', password);
+    localStorage.setItem('monitoring', monitoring);
     history.push(`/dashboard/${answer.data.cluster_id}`);
   };
 
@@ -115,7 +119,6 @@ const AllCluster = ({addNewCluster,setAddNewCluster}) => {
     setDatabase('postgresql');
     setIsModalVisible(false);
     setAddNewCluster(false);
-
   };
 
   const handleName = (e) => {
@@ -124,6 +127,10 @@ const AllCluster = ({addNewCluster,setAddNewCluster}) => {
 
   const handleVersion = (e) => {
     setVersion(e.target.value);
+  };
+
+  const onCheckBoxChange = (e) => {
+    setMonitoring(e.target.checked);
   };
   //functions ending here-----------
 
@@ -152,8 +159,7 @@ const AllCluster = ({addNewCluster,setAddNewCluster}) => {
                   justifyContent: 'center',
                   alignItems: 'center',
                   cursor: 'pointer'
-                }}
-              >
+                }}>
                 <h2 style={{ color: 'white' }}>Add new</h2>
               </div>
             </Col>
@@ -169,8 +175,7 @@ const AllCluster = ({addNewCluster,setAddNewCluster}) => {
                     justifyContent: 'center',
                     alignItems: 'center',
                     flexDirection: 'column'
-                  }}
-                >
+                  }}>
                   <PacmanLoader color="white" loading={loadingClusters} size={25} />
                   <p style={{ color: 'white', marginTop: '2.5em' }}>Loading Clusters</p>
                 </div>
@@ -193,8 +198,7 @@ const AllCluster = ({addNewCluster,setAddNewCluster}) => {
                   border: 'none'
                 }}
                 key="back"
-                onClick={handleCancel}
-              >
+                onClick={handleCancel}>
                 Cancel
               </Button>,
               <Button
@@ -204,12 +208,10 @@ const AllCluster = ({addNewCluster,setAddNewCluster}) => {
                   border: 'none'
                 }}
                 key="submit"
-                onClick={handleFinish}
-              >
+                onClick={handleFinish}>
                 Spin up
               </Button>
-            ]}
-          >
+            ]}>
             <p style={{ color: '#738095' }}>Name your Cluster</p>
             <Input
               defaultValue={name}
@@ -244,12 +246,11 @@ const AllCluster = ({addNewCluster,setAddNewCluster}) => {
                         background: 'transparent',
                         cursor: 'pointer'
                       }}
-                      key={shortid.generate()}
-                    >
+                      key={shortid.generate()}>
                       {/* <DatabaseForDashboard
-                      databaseSelected={database}
-                      databaseRendering={dbName}
-                    /> */}
+					  databaseSelected={database}
+					  databaseRendering={dbName}
+					/> */}
                       <MemoedDatabases databaseSelected={database} databaseRendering={dbName} />
                     </button>
                   </Col>
@@ -315,6 +316,12 @@ const AllCluster = ({addNewCluster,setAddNewCluster}) => {
                 borderBottomColor: '#5cfff3'
               }}
             />
+            <br />
+            <br />
+            <Checkbox checked={monitoring} onChange={onCheckBoxChange} style={{ color: '#738095' }}>
+              Enable Monitoring
+            </Checkbox>
+
             {creatingCluster ? (
               <Col style={{ margin: '1em', marginLeft: '110px' }}>
                 <div
@@ -326,8 +333,7 @@ const AllCluster = ({addNewCluster,setAddNewCluster}) => {
                     justifyContent: 'center',
                     alignItems: 'center',
                     flexDirection: 'column'
-                  }}
-                >
+                  }}>
                   <PacmanLoader color="white" loading={creatingCluster} size={25} />
                   <p style={{ color: 'white', marginTop: '2.5em' }}>Creating Cluster</p>
                 </div>
